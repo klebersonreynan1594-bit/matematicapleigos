@@ -1,14 +1,311 @@
-<!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Login — MatemáticaPro</title>
-<style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Arial;background:linear-gradient(135deg,#111827,#1f2937)}.card{width:min(92vw,410px);background:#fff;padding:30px;border-radius:20px;box-shadow:0 20px 60px #0006}h1{text-align:center;margin:0 0 8px}.sub{text-align:center;color:#6b7280;margin-bottom:24px}.tabs{display:flex;gap:8px}.tabs button{flex:1}button{width:100%;margin-top:12px;padding:13px;border:0;border-radius:10px;background:#2563eb;color:#fff;font-size:16px;font-weight:700}.secondary{background:#e5e7eb;color:#111827}label{display:block;font-weight:700;margin:14px 0 7px}input{width:100%;padding:13px;border:1px solid #d1d5db;border-radius:10px;font-size:16px}.msg{min-height:20px;margin-top:14px;text-align:center;color:#b91c1c}</style></head>
-<body><div class="card"><h1>📚 MatemáticaPro</h1><div class="sub">Teste de login e progresso individual</div>
-<div class="tabs"><button id="btnLogin">Entrar</button><button id="btnCad" class="secondary">Criar conta</button></div>
-<form id="loginForm"><label>Usuário</label><input id="lu" required><label>Senha</label><input id="lp" type="password" required><button>Entrar</button></form>
-<form id="cadForm" style="display:none"><label>Novo usuário</label><input id="cu" required><label>Senha</label><input id="cp" type="password" minlength="4" required><button>Criar conta</button></form><div class="msg" id="msg"></div></div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Login - MatemáticaPro</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: #1e293b;
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #cbd5e1;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 18px;
+      border: 1px solid #475569;
+      border-radius: 10px;
+      background: #0f172a;
+      color: white;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #38bdf8;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #mensagem {
+      margin-top: 18px;
+      text-align: center;
+      min-height: 22px;
+      color: #f87171;
+    }
+
+    .info {
+      margin-top: 24px;
+      padding: 14px;
+      background: #0f172a;
+      border-radius: 10px;
+      color: #94a3b8;
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <div class="logo">
+      📚 MatemáticaPro
+    </div>
+
+    <div class="subtitle">
+      Área exclusiva dos alunos
+    </div>
+
+    <form id="loginForm">
+
+      <label for="email">
+        E-mail
+      </label>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Digite seu e-mail"
+        autocomplete="email"
+        required
+      >
+
+      <label for="senha">
+        Senha
+      </label>
+
+      <input
+        type="password"
+        id="senha"
+        placeholder="Digite sua senha"
+        autocomplete="current-password"
+        required
+      >
+
+      <button type="submit" id="btnLogin">
+        Entrar
+      </button>
+
+    </form>
+
+    <div id="mensagem"></div>
+
+    <div class="info">
+      O acesso é exclusivo para alunos cadastrados.
+      <br>
+      Para solicitar uma conta, entre em contato com o administrador.
+    </div>
+
+  </div>
+
 <script>
-const USERS='matpro_users',SESSION='matpro_session';const get=()=>JSON.parse(localStorage.getItem(USERS)||'{}');const save=x=>localStorage.setItem(USERS,JSON.stringify(x));const msg=x=>document.getElementById('msg').textContent=x;const go=()=>location.href='curso.html';
-btnLogin.onclick=()=>{loginForm.style.display='block';cadForm.style.display='none';msg('')};btnCad.onclick=()=>{loginForm.style.display='none';cadForm.style.display='block';msg('')};
-cadForm.onsubmit=e=>{e.preventDefault();const u=cu.value.trim(),p=cp.value,d=get();if(d[u])return msg('Esse usuário já existe.');d[u]={senha:p,progresso:{}};save(d);localStorage.setItem(SESSION,u);go()};
-loginForm.onsubmit=e=>{e.preventDefault();const u=lu.value.trim(),p=lp.value,d=get();if(!d[u]||d[u].senha!==p)return msg('Usuário ou senha incorretos.');localStorage.setItem(SESSION,u);go()};
-</script></body></html>
+
+  // ==========================================
+  // CONFIGURAÇÃO DO SUPABASE
+  // ==========================================
+
+  const SUPABASE_URL =
+    "https://uefdmsafyogunnrvhljv.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_Cct4J1njgu6rSkPPuqEOCQ_vhSS89Pa";
+
+
+  const { createClient } =
+    supabase;
+
+  const supabaseClient =
+    createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+
+  // ==========================================
+  // ELEMENTOS DA PÁGINA
+  // ==========================================
+
+  const loginForm =
+    document.getElementById("loginForm");
+
+  const emailInput =
+    document.getElementById("email");
+
+  const senhaInput =
+    document.getElementById("senha");
+
+  const btnLogin =
+    document.getElementById("btnLogin");
+
+  const mensagem =
+    document.getElementById("mensagem");
+
+
+  // ==========================================
+  // VERIFICAR SE JÁ ESTÁ LOGADO
+  // ==========================================
+
+  verificarSessao();
+
+
+  async function verificarSessao() {
+
+    const {
+      data,
+      error
+    } = await supabaseClient.auth.getSession();
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    if (data.session) {
+
+      window.location.href =
+        "curso.html";
+
+    }
+
+  }
+
+
+  // ==========================================
+  // LOGIN
+  // ==========================================
+
+  loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+      mensagem.textContent = "";
+
+      btnLogin.disabled = true;
+      btnLogin.textContent = "Entrando...";
+
+
+      const email =
+        emailInput.value.trim();
+
+      const senha =
+        senhaInput.value;
+
+
+      const {
+        data,
+        error
+      } = await supabaseClient.auth.signInWithPassword({
+
+        email: email,
+
+        password: senha
+
+      });
+
+
+      if (error) {
+
+        console.error(error);
+
+        mensagem.textContent =
+          "E-mail ou senha incorretos.";
+
+        btnLogin.disabled = false;
+        btnLogin.textContent = "Entrar";
+
+        return;
+      }
+
+
+      // Login realizado
+
+      mensagem.style.color =
+        "#4ade80";
+
+      mensagem.textContent =
+        "Login realizado!";
+
+
+      setTimeout(function() {
+
+        window.location.href =
+          "curso.html";
+
+      }, 500);
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
