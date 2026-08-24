@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Matemática para Leigos</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0b1220;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 420px;
+            background: #111827;
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 24px;
+            padding: 32px 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.4);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 28px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #cbd5e1;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #3b82f6;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: #3b82f6;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background: #2563eb;
+        }
+
+        .trocar {
+            margin-top: 20px;
+            text-align: center;
+            color: #60a5fa;
+            cursor: pointer;
+        }
+
+        #mensagem {
+            margin-top: 18px;
+            text-align: center;
+            color: #fbbf24;
+            line-height: 1.5;
+        }
+
+        .voltar {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #64748b;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1 id="titulo">Entrar</h1>
+
+    <p class="subtitulo">
+        Matemática para Leigos
+    </p>
+
+    <form id="formulario">
+
+        <label for="email">E-mail</label>
+        <input
+            type="email"
+            id="email"
+            placeholder="seuemail@gmail.com"
+            required
+        >
+
+        <label for="senha">Senha</label>
+        <input
+            type="password"
+            id="senha"
+            placeholder="Sua senha"
+            required
+        >
+
+        <button type="submit" id="botao">
+            Entrar
+        </button>
+
+    </form>
+
+    <p id="mensagem"></p>
+
+    <div class="trocar" id="trocar">
+        Ainda não tenho uma conta
+    </div>
+
+    <a href="index.html" class="voltar">
+        ← Voltar
+    </a>
+
+</div>
+
+<script>
+
+    const SUPABASE_URL =
+        "https://ugcrffuabvlgobtfcuxf.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_aCd5M2fKeUlZ6xgFZxefzA_YfxGKznF";
+
+    const supabase = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+    let modoCadastro = false;
+
+    const formulario = document.getElementById("formulario");
+    const titulo = document.getElementById("titulo");
+    const botao = document.getElementById("botao");
+    const trocar = document.getElementById("trocar");
+    const mensagem = document.getElementById("mensagem");
+
+    trocar.addEventListener("click", () => {
+
+        modoCadastro = !modoCadastro;
+
+        mensagem.textContent = "";
+
+        if (modoCadastro) {
+
+            titulo.textContent = "Criar conta";
+            botao.textContent = "Criar conta";
+            trocar.textContent = "Já tenho uma conta";
+
+        } else {
+
+            titulo.textContent = "Entrar";
+            botao.textContent = "Entrar";
+            trocar.textContent = "Ainda não tenho uma conta";
+
+        }
+
+    });
+
+
+    formulario.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const senha = document.getElementById("senha").value;
+
+        mensagem.textContent = "Aguarde...";
+
+        if (modoCadastro) {
+
+            const { data, error } =
+                await supabase.auth.signUp({
+                    email: email,
+                    password: senha
+                });
+
+            if (error) {
+
+                mensagem.textContent = error.message;
+                return;
+
+            }
+
+            mensagem.textContent =
+                "Conta criada! Verifique seu e-mail para confirmar o cadastro.";
+
+        } else {
+
+            const { data, error } =
+                await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: senha
+                });
+
+            if (error) {
+
+                mensagem.textContent =
+                    "E-mail ou senha incorretos.";
+
+                return;
+
+            }
+
+            window.location.href = "curso.html";
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
