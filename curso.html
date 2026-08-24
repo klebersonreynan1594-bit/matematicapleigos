@@ -1,12 +1,17 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Matemática para Leigos</title>
 
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -18,6 +23,30 @@ body{
     background:#0b1220;
     color:white;
     min-height:100vh;
+}
+
+/* Enquanto verifica o usuário */
+
+#carregando{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:#0b1220;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:12px;
+    color:#94a3b8;
+}
+
+#carregando strong{
+    color:white;
+    font-size:20px;
+}
+
+#conteudoCurso{
+    display:none;
 }
 
 header{
@@ -259,10 +288,35 @@ footer{
     }
 
 }
+
 </style>
+
 </head>
 
 <body>
+
+
+<!-- ==========================================
+     TELA DE VERIFICAÇÃO
+========================================== -->
+
+<div id="carregando">
+
+    <strong>🔐 Verificando acesso...</strong>
+
+    <span>
+        Aguarde um momento.
+    </span>
+
+</div>
+
+
+<!-- ==========================================
+     CONTEÚDO DO CURSO
+========================================== -->
+
+<div id="conteudoCurso">
+
 
 <header>
 
@@ -292,7 +346,12 @@ Matemática para Concursos
 </div>
 
 <div class="barra">
-<div class="barra-preenchida" id="barraGeral"></div>
+
+<div
+class="barra-preenchida"
+id="barraGeral">
+</div>
+
 </div>
 
 </section>
@@ -307,279 +366,748 @@ Matemática para Concursos
 
 <section class="modulo">
 
-<div class="modulo-titulo"
-onclick="abrirModulo('basica',this)">
+<div
+class="modulo-titulo"
+onclick="abrirModulo('basica',this)"
+>
 
-<div class="modulo-icon">📘</div>
+<div class="modulo-icon">
+📘
+</div>
 
 <div class="modulo-info">
 
-<h2>Matemática Básica</h2>
+<h2>
+Matemática Básica
+</h2>
 
-<p>Fundamentos essenciais para concursos</p>
+<p>
+Fundamentos essenciais para concursos
+</p>
 
-<div class="modulo-progresso"
-id="prog-basica">
+<div
+class="modulo-progresso"
+id="prog-basica"
+>
 0%
 </div>
 
 </div>
 
-<div class="seta">›</div>
+<div class="seta">
+›
+</div>
 
 </div>
 
 
-<div class="assuntos" id="basica">
+<div
+class="assuntos"
+id="basica"
+>
 
 
-<a href="aula01.html" class="assunto" data-aula="1">
-<div class="numero">01</div>
+<a
+href="aula01.html"
+class="assunto"
+data-aula="1"
+>
+
+<div class="numero">
+01
+</div>
+
 <div class="assunto-texto">
-<strong>Operações Fundamentais</strong>
-<span>Operações e expressões numéricas</span>
+
+<strong>
+Operações Fundamentais
+</strong>
+
+<span>
+Operações e expressões numéricas
+</span>
+
 </div>
-<div class="check" onclick="concluir(event,1)">✓</div>
+
+<div
+class="check"
+onclick="concluir(event,1)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula02.html" class="assunto" data-aula="2">
-<div class="numero">02</div>
-<div class="assunto-texto">
-<strong>Números Naturais, Inteiros e Racionais</strong>
-<span>Conjuntos, operações e comparação</span>
+
+<div class="numero">
+02
 </div>
-<div class="check" onclick="concluir(event,2)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Números Naturais, Inteiros e Racionais
+</strong>
+
+<span>
+Conjuntos, operações e comparação
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,2)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula03.html" class="assunto" data-aula="3">
-<div class="numero">03</div>
-<div class="assunto-texto">
-<strong>Números Primos, Fatoração e Divisibilidade</strong>
-<span>Primos, divisores e critérios</span>
+
+<div class="numero">
+03
 </div>
-<div class="check" onclick="concluir(event,3)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Números Primos, Fatoração e Divisibilidade
+</strong>
+
+<span>
+Primos, divisores e critérios
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,3)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula04.html" class="assunto" data-aula="4">
-<div class="numero">04</div>
-<div class="assunto-texto">
-<strong>MMC e MDC</strong>
-<span>Múltiplos e divisores</span>
+
+<div class="numero">
+04
 </div>
-<div class="check" onclick="concluir(event,4)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+MMC e MDC
+</strong>
+
+<span>
+Múltiplos e divisores
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,4)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula05.html" class="assunto" data-aula="5">
-<div class="numero">05</div>
-<div class="assunto-texto">
-<strong>Frações, Decimais e Dízimas Periódicas</strong>
-<span>Operações e conversões</span>
+
+<div class="numero">
+05
 </div>
-<div class="check" onclick="concluir(event,5)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Frações, Decimais e Dízimas Periódicas
+</strong>
+
+<span>
+Operações e conversões
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,5)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula06.html" class="assunto" data-aula="6">
-<div class="numero">06</div>
-<div class="assunto-texto">
-<strong>Potenciação e Radiciação</strong>
-<span>Propriedades e operações</span>
+
+<div class="numero">
+06
 </div>
-<div class="check" onclick="concluir(event,6)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Potenciação e Radiciação
+</strong>
+
+<span>
+Propriedades e operações
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,6)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula07.html" class="assunto" data-aula="7">
-<div class="numero">07</div>
-<div class="assunto-texto">
-<strong>Notação Científica</strong>
-<span>Potências de 10 e operações</span>
+
+<div class="numero">
+07
 </div>
-<div class="check" onclick="concluir(event,7)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Notação Científica
+</strong>
+
+<span>
+Potências de 10 e operações
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,7)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula08.html" class="assunto" data-aula="8">
-<div class="numero">08</div>
-<div class="assunto-texto">
-<strong>Razão e Proporção</strong>
-<span>Razões, proporções e aplicações</span>
+
+<div class="numero">
+08
 </div>
-<div class="check" onclick="concluir(event,8)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Razão e Proporção
+</strong>
+
+<span>
+Razões, proporções e aplicações
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,8)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula09.html" class="assunto" data-aula="9">
-<div class="numero">09</div>
-<div class="assunto-texto">
-<strong>Divisão Proporcional</strong>
-<span>Direta e inversamente proporcional</span>
+
+<div class="numero">
+09
 </div>
-<div class="check" onclick="concluir(event,9)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Divisão Proporcional
+</strong>
+
+<span>
+Direta e inversamente proporcional
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,9)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula10.html" class="assunto" data-aula="10">
-<div class="numero">10</div>
-<div class="assunto-texto">
-<strong>Regra de Três Simples</strong>
-<span>Grandezas proporcionais</span>
+
+<div class="numero">
+10
 </div>
-<div class="check" onclick="concluir(event,10)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Regra de Três Simples
+</strong>
+
+<span>
+Grandezas proporcionais
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,10)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula11.html" class="assunto" data-aula="11">
-<div class="numero">11</div>
-<div class="assunto-texto">
-<strong>Regra de Três Composta</strong>
-<span>Múltiplas grandezas</span>
+
+<div class="numero">
+11
 </div>
-<div class="check" onclick="concluir(event,11)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Regra de Três Composta
+</strong>
+
+<span>
+Múltiplas grandezas
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,11)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula12.html" class="assunto" data-aula="12">
-<div class="numero">12</div>
-<div class="assunto-texto">
-<strong>Porcentagem</strong>
-<span>Cálculo e interpretação</span>
+
+<div class="numero">
+12
 </div>
-<div class="check" onclick="concluir(event,12)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Porcentagem
+</strong>
+
+<span>
+Cálculo e interpretação
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,12)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula13.html" class="assunto" data-aula="13">
-<div class="numero">13</div>
-<div class="assunto-texto">
-<strong>Aumentos e Descontos</strong>
-<span>Variações percentuais</span>
+
+<div class="numero">
+13
 </div>
-<div class="check" onclick="concluir(event,13)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Aumentos e Descontos
+</strong>
+
+<span>
+Variações percentuais
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,13)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula14.html" class="assunto" data-aula="14">
-<div class="numero">14</div>
-<div class="assunto-texto">
-<strong>Juros Simples</strong>
-<span>Capital, taxa, juros e montante</span>
+
+<div class="numero">
+14
 </div>
-<div class="check" onclick="concluir(event,14)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Juros Simples
+</strong>
+
+<span>
+Capital, taxa, juros e montante
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,14)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula15.html" class="assunto" data-aula="15">
-<div class="numero">15</div>
-<div class="assunto-texto">
-<strong>Juros Compostos</strong>
-<span>Capitalização e montante</span>
+
+<div class="numero">
+15
 </div>
-<div class="check" onclick="concluir(event,15)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Juros Compostos
+</strong>
+
+<span>
+Capitalização e montante
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,15)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula16.html" class="assunto" data-aula="16">
-<div class="numero">16</div>
-<div class="assunto-texto">
-<strong>Sistema de Medidas</strong>
-<span>Comprimento, massa, capacidade e tempo</span>
+
+<div class="numero">
+16
 </div>
-<div class="check" onclick="concluir(event,16)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Sistema de Medidas
+</strong>
+
+<span>
+Comprimento, massa, capacidade e tempo
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,16)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula17.html" class="assunto" data-aula="17">
-<div class="numero">17</div>
-<div class="assunto-texto">
-<strong>Conversão de Unidades</strong>
-<span>Comprimento, área e volume</span>
+
+<div class="numero">
+17
 </div>
-<div class="check" onclick="concluir(event,17)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Conversão de Unidades
+</strong>
+
+<span>
+Comprimento, área e volume
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,17)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula18.html" class="assunto" data-aula="18">
-<div class="numero">18</div>
-<div class="assunto-texto">
-<strong>Média Aritmética</strong>
-<span>Média simples e aplicações</span>
+
+<div class="numero">
+18
 </div>
-<div class="check" onclick="concluir(event,18)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Média Aritmética
+</strong>
+
+<span>
+Média simples e aplicações
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,18)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula19.html" class="assunto" data-aula="19">
-<div class="numero">19</div>
-<div class="assunto-texto">
-<strong>Média Ponderada</strong>
-<span>Pesos e problemas</span>
+
+<div class="numero">
+19
 </div>
-<div class="check" onclick="concluir(event,19)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Média Ponderada
+</strong>
+
+<span>
+Pesos e problemas
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,19)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula20.html" class="assunto" data-aula="20">
-<div class="numero">20</div>
-<div class="assunto-texto">
-<strong>Média Geométrica</strong>
-<span>Conceito e aplicações</span>
+
+<div class="numero">
+20
 </div>
-<div class="check" onclick="concluir(event,20)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Média Geométrica
+</strong>
+
+<span>
+Conceito e aplicações
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,20)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula21.html" class="assunto" data-aula="21">
-<div class="numero">21</div>
-<div class="assunto-texto">
-<strong>Estatística Básica</strong>
-<span>Média, mediana, moda e amplitude</span>
+
+<div class="numero">
+21
 </div>
-<div class="check" onclick="concluir(event,21)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Estatística Básica
+</strong>
+
+<span>
+Média, mediana, moda e amplitude
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,21)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula22.html" class="assunto" data-aula="22">
-<div class="numero">22</div>
-<div class="assunto-texto">
-<strong>Tabelas e Gráficos</strong>
-<span>Interpretação de dados</span>
+
+<div class="numero">
+22
 </div>
-<div class="check" onclick="concluir(event,22)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Tabelas e Gráficos
+</strong>
+
+<span>
+Interpretação de dados
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,22)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula23.html" class="assunto" data-aula="23">
-<div class="numero">23</div>
-<div class="assunto-texto">
-<strong>Sequências Numéricas</strong>
-<span>Padrões e leis de formação</span>
+
+<div class="numero">
+23
 </div>
-<div class="check" onclick="concluir(event,23)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Sequências Numéricas
+</strong>
+
+<span>
+Padrões e leis de formação
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,23)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula24.html" class="assunto" data-aula="24">
-<div class="numero">24</div>
-<div class="assunto-texto">
-<strong>Problemas Aritméticos</strong>
-<span>Interpretação e modelagem</span>
+
+<div class="numero">
+24
 </div>
-<div class="check" onclick="concluir(event,24)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Problemas Aritméticos
+</strong>
+
+<span>
+Interpretação e modelagem
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,24)"
+>
+✓
+</div>
+
 </a>
 
 
 <a href="aula25.html" class="assunto" data-aula="25">
-<div class="numero">25</div>
-<div class="assunto-texto">
-<strong>Problemas de Concurso</strong>
-<span>Questões integradas</span>
+
+<div class="numero">
+25
 </div>
-<div class="check" onclick="concluir(event,25)">✓</div>
+
+<div class="assunto-texto">
+
+<strong>
+Problemas de Concurso
+</strong>
+
+<span>
+Questões integradas
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,25)"
+>
+✓
+</div>
+
 </a>
 
 
@@ -593,33 +1121,50 @@ id="prog-basica">
 
 <section class="modulo">
 
-<div class="modulo-titulo"
-onclick="abrirModulo('geometria',this)">
+<div
+class="modulo-titulo"
+onclick="abrirModulo('geometria',this)"
+>
 
-<div class="modulo-icon">📐</div>
+<div class="modulo-icon">
+📐
+</div>
 
 <div class="modulo-info">
 
-<h2>Geometria</h2>
+<h2>
+Geometria
+</h2>
 
-<p>Geometria plana, espacial e analítica</p>
+<p>
+Geometria plana, espacial e analítica
+</p>
 
-<div class="modulo-progresso"
-id="prog-geometria">
+<div
+class="modulo-progresso"
+id="prog-geometria"
+>
 0%
 </div>
 
 </div>
 
-<div class="seta">›</div>
+<div class="seta">
+›
+</div>
 
 </div>
 
 
-<div class="assuntos" id="geometria">
+<div
+class="assuntos"
+id="geometria"
+>
 
 <script>
+
 const geometria = [
+
 "Conceitos Fundamentais da Geometria",
 "Ângulos",
 "Retas Paralelas e Transversais",
@@ -650,6 +1195,7 @@ const geometria = [
 "Geometria Analítica Básica",
 "Problemas de Geometria",
 "Geometria para Concursos"
+
 ];
 
 geometria.forEach((nome,i)=>{
@@ -657,24 +1203,42 @@ geometria.forEach((nome,i)=>{
 let n=i+1;
 
 document.write(`
-<a href="aula${String(n+25).padStart(2,'0')}.html"
+
+<a
+href="aula${String(n+25).padStart(2,'0')}.html"
 class="assunto"
-data-aula="${n+25}">
+data-aula="${n+25}"
+>
 
-<div class="numero">${String(n).padStart(2,'0')}</div>
-
-<div class="assunto-texto">
-<strong>${nome}</strong>
-<span>Conteúdo de geometria para concursos</span>
+<div class="numero">
+${String(n).padStart(2,'0')}
 </div>
 
-<div class="check"
-onclick="concluir(event,${n+25})">✓</div>
+<div class="assunto-texto">
+
+<strong>
+${nome}
+</strong>
+
+<span>
+Conteúdo de geometria para concursos
+</span>
+
+</div>
+
+<div
+class="check"
+onclick="concluir(event,${n+25})"
+>
+✓
+</div>
 
 </a>
+
 `);
 
 });
+
 </script>
 
 </div>
@@ -687,30 +1251,45 @@ onclick="concluir(event,${n+25})">✓</div>
 
 <section class="modulo">
 
-<div class="modulo-titulo"
-onclick="abrirModulo('algebra',this)">
+<div
+class="modulo-titulo"
+onclick="abrirModulo('algebra',this)"
+>
 
-<div class="modulo-icon">🔢</div>
+<div class="modulo-icon">
+🔢
+</div>
 
 <div class="modulo-info">
 
-<h2>Álgebra</h2>
+<h2>
+Álgebra
+</h2>
 
-<p>Equações, funções e estruturas algébricas</p>
+<p>
+Equações, funções e estruturas algébricas
+</p>
 
-<div class="modulo-progresso"
-id="prog-algebra">
+<div
+class="modulo-progresso"
+id="prog-algebra"
+>
 0%
 </div>
 
 </div>
 
-<div class="seta">›</div>
+<div class="seta">
+›
+</div>
 
 </div>
 
 
-<div class="assuntos" id="algebra">
+<div
+class="assuntos"
+id="algebra"
+>
 
 <script>
 
@@ -756,13 +1335,16 @@ const algebra = [
 algebra.forEach((nome,i)=>{
 
 let n=i+1;
+
 let aula=n+55;
 
 document.write(`
 
-<a href="aula${String(aula).padStart(2,'0')}.html"
+<a
+href="aula${String(aula).padStart(2,'0')}.html"
 class="assunto"
-data-aula="${aula}">
+data-aula="${aula}"
+>
 
 <div class="numero">
 ${String(n).padStart(2,'0')}
@@ -770,7 +1352,9 @@ ${String(n).padStart(2,'0')}
 
 <div class="assunto-texto">
 
-<strong>${nome}</strong>
+<strong>
+${nome}
+</strong>
 
 <span>
 Conteúdo de álgebra para concursos
@@ -778,8 +1362,10 @@ Conteúdo de álgebra para concursos
 
 </div>
 
-<div class="check"
-onclick="concluir(event,${aula})">
+<div
+class="check"
+onclick="concluir(event,${aula})"
+>
 ✓
 </div>
 
@@ -803,127 +1389,228 @@ Matemática para Leigos • Matemática para Concursos
 </footer>
 
 
+</div>
+
+
+<!-- ==========================================
+     PROTEÇÃO DO CURSO
+========================================== -->
+
 <script>
 
-/* ABRIR MÓDULO */
+/*
+==================================================
+SUPABASE
+==================================================
+*/
+
+const SUPABASE_URL =
+    "https://ugcrffuabvlgobtfcuxf.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_aCd5M2fKeUlZ6xgFZxefzA_YfxGKznF";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/*
+==================================================
+VERIFICAR ACESSO
+==================================================
+*/
+
+async function verificarAcesso(){
+
+    try{
+
+        const {
+            data: {
+                session
+            }
+        } =
+        await supabaseClient.auth.getSession();
+
+
+        /*
+        ------------------------------------------
+        SEM LOGIN
+        ------------------------------------------
+        */
+
+        if(!session){
+
+            window.location.replace("login.html");
+
+            return;
+        }
+
+
+        /*
+        ------------------------------------------
+        USUÁRIO
+        ------------------------------------------
+        */
+
+        const usuario =
+            session.user;
+
+
+        if(!usuario){
+
+            await supabaseClient.auth.signOut();
+
+            window.location.replace("login.html");
+
+            return;
+        }
+
+
+        /*
+        ------------------------------------------
+        VERIFICAR AUTORIZAÇÃO
+        ------------------------------------------
+        */
+
+        const {
+            data: autorizacao,
+            error
+        } =
+        await supabaseClient
+            .from("usuarios_autorizados")
+            .select("autorizado")
+            .eq("user_id",usuario.id)
+            .maybeSingle();
+
+
+        /*
+        ------------------------------------------
+        ERRO
+        ------------------------------------------
+        */
+
+        if(error){
+
+            console.error(
+                "Erro ao verificar autorização:",
+                error
+            );
+
+            await supabaseClient.auth.signOut();
+
+            window.location.replace("login.html");
+
+            return;
+        }
+
+
+        /*
+        ------------------------------------------
+        NÃO AUTORIZADO
+        ------------------------------------------
+        */
+
+        if(
+            !autorizacao ||
+            autorizacao.autorizado !== true
+        ){
+
+            await supabaseClient.auth.signOut();
+
+            window.location.replace("login.html");
+
+            return;
+        }
+
+
+        /*
+        ------------------------------------------
+        AUTORIZADO
+        ------------------------------------------
+        */
+
+        document
+            .getElementById("carregando")
+            .style.display = "none";
+
+        document
+            .getElementById("conteudoCurso")
+            .style.display = "block";
+
+
+        atualizarProgresso();
+
+    }catch(erro){
+
+        console.error(
+            "Erro inesperado:",
+            erro
+        );
+
+        window.location.replace("login.html");
+
+    }
+
+}
+
+
+/*
+==================================================
+ABRIR MÓDULO
+==================================================
+*/
 
 function abrirModulo(id,elemento){
 
-const modulo=document.getElementById(id);
-const seta=elemento.querySelector(".seta");
+    const modulo =
+        document.getElementById(id);
 
-if(modulo.classList.contains("aberto")){
+    const seta =
+        elemento.querySelector(".seta");
 
-modulo.classList.remove("aberto");
-seta.textContent="›";
 
-}else{
+    if(
+        modulo.classList.contains("aberto")
+    ){
 
-modulo.classList.add("aberto");
-seta.textContent="⌄";
+        modulo.classList.remove("aberto");
+
+        seta.textContent = "›";
+
+    }else{
+
+        modulo.classList.add("aberto");
+
+        seta.textContent = "⌄";
+
+    }
 
 }
 
-}
 
-
-/* CONCLUIR AULA */
+/*
+==================================================
+CONCLUIR AULA
+==================================================
+*/
 
 function concluir(event,aula){
 
-event.preventDefault();
-event.stopPropagation();
+    event.preventDefault();
 
-let concluida =
-JSON.parse(localStorage.getItem("aulasConcluidas") || "[]");
-
-if(concluida.includes(aula)){
-
-concluida=concluida.filter(x=>x!==aula);
-
-}else{
-
-concluida.push(aula);
-
-}
-
-localStorage.setItem(
-"aulasConcluidas",
-JSON.stringify(concluida)
-);
-
-atualizarProgresso();
-
-}
+    event.stopPropagation();
 
 
-/* ATUALIZAR PROGRESSO */
-
-function atualizarProgresso(){
-
-const aulas=
-JSON.parse(localStorage.getItem("aulasConcluidas") || "[]");
-
-
-document.querySelectorAll(".assunto").forEach(item=>{
-
-const aula=Number(item.dataset.aula);
-
-if(aulas.includes(aula)){
-
-item.classList.add("concluida");
-
-}else{
-
-item.classList.remove("concluida");
-
-}
-
-});
+    let concluida =
+        JSON.parse(
+            localStorage.getItem(
+                "aulasConcluidas"
+            ) || "[]"
+        );
 
 
-const total=89;
-const feitas=aulas.filter(x=>x>=1 && x<=89).length;
-
-const porcentagem=
-Math.round((feitas/total)*100);
-
-document.getElementById("progressoGeral").textContent=
-porcentagem+"%";
-
-document.getElementById("barraGeral").style.width=
-porcentagem+"%";
-
-
-/* PROGRESSO DOS MÓDULOS */
-
-const basica=
-aulas.filter(x=>x>=1 && x<=25).length;
-
-const geometria=
-aulas.filter(x=>x>=26 && x<=55).length;
-
-const algebra=
-aulas.filter(x=>x>=56 && x<=89).length;
-
-
-document.getElementById("prog-basica").textContent=
-Math.round((basica/25)*100)+"% concluído";
-
-document.getElementById("prog-geometria").textContent=
-Math.round((geometria/30)*100)+"% concluído";
-
-document.getElementById("prog-algebra").textContent=
-Math.round((algebra/34)*100)+"% concluído";
-
-}
-
-
-/* INICIAR */
-
-atualizarProgresso();
-
-</script>
-
-</body>
-</html>
+    if(
+    
