@@ -1,6 +1,28 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
 <html lang="pt-BR">
+  <script>
+const SUPABASE_URL = "https://ugcrffuabvlgobtfcuxf.supabase.co";
+const SUPABASE_KEY = "sb_publishable_aCd5M2fKeUlZ6xgFZxefzA_YfxGKznF";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+async function protegerPagina() {
+
+    const { data: { session } } =
+        await supabaseClient.auth.getSession();
+
+    if (!session) {
+        window.location.href = "login.html";
+    }
+}
+
+protegerPagina();
+  </script>
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Aula 01 - Operações Fundamentais</title>
