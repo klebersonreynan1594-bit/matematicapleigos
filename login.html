@@ -2,15 +2,15 @@ login.html
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Login - Matemática para Leigos</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>Entrar - Matemática para Leigos</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -22,63 +22,92 @@ body{
     background:#0b1220;
     color:white;
     font-family:Arial,sans-serif;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     padding:20px;
 }
 
 .card{
     width:100%;
     max-width:420px;
+
     background:#111827;
+
     border:1px solid rgba(255,255,255,.1);
+
     border-radius:24px;
+
     padding:35px 25px;
-    box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.4);
 }
 
 .icone{
     width:70px;
     height:70px;
+
     margin:0 auto 18px;
+
     border-radius:18px;
+
     background:rgba(255,255,255,.08);
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:36px;
 }
 
 h1{
     text-align:center;
+
     font-size:28px;
+
     margin-bottom:8px;
 }
 
 .subtitulo{
     text-align:center;
+
     color:#94a3b8;
+
     margin-bottom:28px;
+
     font-size:14px;
 }
 
 label{
     display:block;
+
     color:#cbd5e1;
+
     font-size:14px;
+
     margin-bottom:7px;
 }
 
 input{
     width:100%;
+
     padding:15px;
+
     margin-bottom:17px;
+
     border-radius:12px;
+
     border:1px solid #334155;
+
     background:#0f172a;
+
     color:white;
+
     font-size:16px;
+
     outline:none;
 }
 
@@ -92,12 +121,19 @@ button{
 
 .botao-principal{
     width:100%;
+
     padding:15px;
+
     border:none;
+
     border-radius:12px;
+
     background:#3b82f6;
+
     color:white;
+
     font-size:16px;
+
     font-weight:bold;
 }
 
@@ -107,118 +143,149 @@ button{
 
 .botao-principal:disabled{
     opacity:.6;
-    cursor:wait;
-}
 
-.trocar{
-    display:block;
-    width:100%;
-    margin-top:20px;
-    padding:10px;
-    border:none;
-    background:transparent;
-    color:#60a5fa;
-    font-size:14px;
+    cursor:wait;
 }
 
 .mensagem{
     min-height:24px;
+
     margin-top:16px;
+
     text-align:center;
+
     color:#fbbf24;
+
     font-size:14px;
+
     line-height:1.5;
 }
 
 .voltar{
     display:block;
+
     margin-top:18px;
+
     text-align:center;
+
     color:#64748b;
+
     text-decoration:none;
+
     font-size:13px;
 }
+
+.info{
+    margin-top:22px;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    background:rgba(59,130,246,.08);
+
+    color:#94a3b8;
+
+    font-size:12px;
+
+    text-align:center;
+
+    line-height:1.5;
+}
+
 </style>
+
 </head>
 
 <body>
 
 <div class="card">
 
-<div class="icone">π</div>
+    <div class="icone">
+        π
+    </div>
 
-<h1 id="titulo">Entrar</h1>
+    <h1>
+        Entrar
+    </h1>
 
-<p class="subtitulo">
-Matemática para Leigos
-</p>
+    <p class="subtitulo">
+        Matemática para Leigos
+    </p>
 
-<form id="formulario">
 
-<label for="email">E-mail</label>
+    <form id="formulario">
 
-<input
-type="email"
-id="email"
-placeholder="seuemail@gmail.com"
-autocomplete="email"
-required
->
+        <label for="email">
+            E-mail
+        </label>
 
-<label for="senha">Senha</label>
+        <input
+            type="email"
+            id="email"
+            placeholder="seuemail@gmail.com"
+            autocomplete="username"
+            required
+        >
 
-<input
-type="password"
-id="senha"
-placeholder="Digite sua senha"
-autocomplete="current-password"
-minlength="6"
-required
->
 
-<button
-type="submit"
-class="botao-principal"
-id="botao"
->
-Entrar
-</button>
+        <label for="senha">
+            Senha
+        </label>
 
-</form>
+        <input
+            type="password"
+            id="senha"
+            placeholder="Digite sua senha"
+            autocomplete="current-password"
+            required
+        >
 
-<p class="mensagem" id="mensagem"></p>
 
-<button
-type="button"
-class="trocar"
-id="trocar"
->
-Ainda não tenho uma conta
-</button>
+        <button
+            type="submit"
+            class="botao-principal"
+            id="botao"
+        >
+            Entrar
+        </button>
 
-<a href="index.html" class="voltar">
-← Voltar
-</a>
+    </form>
+
+
+    <p
+        class="mensagem"
+        id="mensagem"
+    ></p>
+
+
+    <div class="info">
+
+        Acesso exclusivo aos alunos do
+        Matemática para Leigos.
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="voltar"
+    >
+        ← Voltar
+    </a>
 
 </div>
+
 
 <script>
 
 /* ==========================================
-   SUPABASE
+   LOGIN PROVISÓRIO
 ========================================== */
 
-const SUPABASE_URL =
-"https://ugcrffuabvlgobtfcuxf.supabase.co";
+const EMAIL_CORRETO = "aluno@gmail.com";
 
-const SUPABASE_KEY =
-"sb_publishable_aCd5M2fKeUlZ6xgFZxefzA_YfxGKznF";
-
-const supabaseClient =
-window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+const SENHA_CORRETA = "123456";
 
 
 /* ==========================================
@@ -228,293 +295,110 @@ window.supabase.createClient(
 const formulario =
 document.getElementById("formulario");
 
-const titulo =
-document.getElementById("titulo");
+const email =
+document.getElementById("email");
+
+const senha =
+document.getElementById("senha");
 
 const botao =
 document.getElementById("botao");
 
-const trocar =
-document.getElementById("trocar");
-
 const mensagem =
 document.getElementById("mensagem");
-
-let modoCadastro = false;
-
-
-/* ==========================================
-   TROCAR LOGIN / CADASTRO
-========================================== */
-
-trocar.addEventListener("click",function(){
-
-modoCadastro = !modoCadastro;
-
-mensagem.textContent = "";
-
-if(modoCadastro){
-
-titulo.textContent = "Criar conta";
-
-botao.textContent = "Criar conta";
-
-trocar.textContent =
-"Já tenho uma conta";
-
-}else{
-
-titulo.textContent = "Entrar";
-
-botao.textContent = "Entrar";
-
-trocar.textContent =
-"Ainda não tenho uma conta";
-
-}
-
-});
-
-
-/* ==========================================
-   FORMULÁRIO
-========================================== */
-
-formulario.addEventListener(
-"submit",
-async function(event){
-
-event.preventDefault();
-
-const email =
-document.getElementById("email")
-.value
-.trim();
-
-const senha =
-document.getElementById("senha")
-.value;
-
-mensagem.textContent = "";
-
-if(!email || !senha){
-
-mensagem.textContent =
-"Preencha e-mail e senha.";
-
-return;
-
-}
-
-if(senha.length < 6){
-
-mensagem.textContent =
-"A senha precisa ter pelo menos 6 caracteres.";
-
-return;
-
-}
-
-botao.disabled = true;
-
-mensagem.textContent =
-"Aguarde...";
-
-
-/* ==========================================
-   CADASTRO
-========================================== */
-
-if(modoCadastro){
-
-const {
-data,
-error
-} =
-await supabaseClient.auth.signUp({
-
-email:email,
-
-password:senha
-
-});
-
-
-if(error){
-
-console.error(error);
-
-mensagem.textContent =
-error.message;
-
-botao.disabled = false;
-
-return;
-
-}
-
-
-/*
-   CRIAR REGISTRO DE ACESSO
-*/
-
-if(data.user){
-
-const {
-error: erroAcesso
-} =
-await supabaseClient
-.from("acessos")
-.insert({
-
-user_id:data.user.id,
-
-liberado:false
-
-});
-
-
-if(erroAcesso){
-
-console.error(
-"Erro ao criar acesso:",
-erroAcesso
-);
-
-}
-
-
-}
-
-
-/*
-   CONTA CRIADA
-*/
-
-if(data.session){
-
-mensagem.textContent =
-"Conta criada! Seu acesso ainda precisa ser liberado.";
-
-}else{
-
-mensagem.textContent =
-"Conta criada! Aguarde a liberação do acesso.";
-
-}
-
-botao.disabled = false;
-
-return;
-
-}
 
 
 /* ==========================================
    LOGIN
 ========================================== */
 
-const {
-data,
-error
-} =
-await supabaseClient.auth.signInWithPassword({
+formulario.addEventListener(
+    "submit",
+    function(event){
 
-email:email,
-
-password:senha
-
-});
+        event.preventDefault();
 
 
-if(error){
+        const emailDigitado =
+            email.value.trim();
 
-console.error(error);
-
-mensagem.textContent =
-"E-mail ou senha incorretos.";
-
-botao.disabled = false;
-
-return;
-
-}
+        const senhaDigitada =
+            senha.value;
 
 
-if(!data.user){
-
-mensagem.textContent =
-"Não foi possível identificar sua conta.";
-
-botao.disabled = false;
-
-return;
-
-}
+        mensagem.textContent = "";
 
 
-/* ==========================================
-   VERIFICAR LIBERAÇÃO
-========================================== */
+        if(!emailDigitado || !senhaDigitada){
 
-const {
-data: acesso,
-error: erroAcesso
-} =
-await supabaseClient
-.from("acessos")
-.select("liberado")
-.eq("user_id",data.user.id)
-.maybeSingle();
+            mensagem.textContent =
+                "Preencha e-mail e senha.";
+
+            return;
+        }
 
 
-if(erroAcesso){
+        botao.disabled = true;
 
-console.error(erroAcesso);
-
-mensagem.textContent =
-"Não foi possível verificar seu acesso.";
-
-await supabaseClient.auth.signOut();
-
-botao.disabled = false;
-
-return;
-
-}
+        botao.textContent =
+            "Entrando...";
 
 
-if(!acesso || acesso.liberado !== true){
-
-mensagem.textContent =
-"⏳ Sua conta foi criada, mas seu acesso ainda não foi liberado.";
-
-await supabaseClient.auth.signOut();
-
-botao.disabled = false;
-
-return;
-
-}
+        setTimeout(function(){
 
 
-/* ==========================================
-   ACESSO LIBERADO
-========================================== */
+            if(
+                emailDigitado === EMAIL_CORRETO &&
+                senhaDigitada === SENHA_CORRETA
+            ){
 
-mensagem.textContent =
-"✅ Acesso autorizado!";
+                /*
+                    Marca que o aluno entrou.
+                */
 
-setTimeout(function(){
+                sessionStorage.setItem(
+                    "alunoLogado",
+                    "true"
+                );
 
-window.location.href =
-"curso.html";
 
-},500);
+                mensagem.style.color =
+                    "#4ade80";
 
-});
+                mensagem.textContent =
+                    "Acesso autorizado!";
+
+
+                setTimeout(function(){
+
+                    window.location.href =
+                        "curso.html";
+
+                },500);
+
+
+            }else{
+
+                mensagem.style.color =
+                    "#fbbf24";
+
+                mensagem.textContent =
+                    "E-mail ou senha incorretos.";
+
+                botao.disabled = false;
+
+                botao.textContent =
+                    "Entrar";
+
+            }
+
+        },500);
+
+    }
+);
 
 </script>
 
 </body>
+
 </html>
