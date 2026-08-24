@@ -1474,16 +1474,15 @@ async function verificarAcesso(){
         VERIFICAR AUTORIZAÇÃO
         ------------------------------------------
         */
-
-        const {
-            data: autorizacao,
-            error
-        } =
-        await supabaseClient
-            .from("usuarios_autorizados")
-            .select("autorizado")
-            .eq("user_id",usuario.id)
-            .maybeSingle();
+const {
+    data: autorizacao,
+    error
+} =
+await supabaseClient
+    .from("acessos")
+    .select("liberado")
+    .eq("user_id", usuario.id)
+    .maybeSingle();
 
 
         /*
@@ -1512,11 +1511,10 @@ async function verificarAcesso(){
         NÃO AUTORIZADO
         ------------------------------------------
         */
-
-        if(
-            !autorizacao ||
-            autorizacao.autorizado !== true
-        ){
+if(
+    !autorizacao ||
+    autorizacao.liberado !== true
+){
 
             await supabaseClient.auth.signOut();
 
