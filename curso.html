@@ -4,13 +4,25 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Matemática para Leigos</title>
 
+
+<!-- SUPABASE -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <style>
+
+/* ==========================================
+   RESET
+========================================== */
 
 *{
     margin:0;
@@ -18,301 +30,504 @@
     box-sizing:border-box;
 }
 
+
+/* ==========================================
+   BODY
+========================================== */
+
 body{
-    font-family:Arial,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     background:#0b1220;
+
     color:white;
+
     min-height:100vh;
+
 }
 
-/* ==============================
-   TELA DE CARREGAMENTO
-============================== */
 
-#carregando{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    background:#0b1220;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    gap:12px;
-    color:#94a3b8;
-    text-align:center;
-    padding:20px;
-}
-
-#carregando strong{
-    color:white;
-    font-size:20px;
-}
-
-#mensagemErro{
-    display:none;
-    color:#f87171;
-    font-size:14px;
-    max-width:400px;
-    line-height:1.5;
-}
-
-#conteudoCurso{
-    display:none;
-}
-
-/* ==============================
+/* ==========================================
    CABEÇALHO
-============================== */
+========================================== */
 
 header{
+
     text-align:center;
-    padding:45px 20px 25px;
+
+    padding:
+        45px
+        20px
+        25px;
+
 }
+
 
 header h1{
+
     font-size:32px;
+
     margin-bottom:8px;
+
 }
+
 
 .azul{
+
     color:#60a5fa;
+
 }
+
 
 .subtitulo{
+
     color:#94a3b8;
+
     font-size:14px;
+
 }
 
-/* ==============================
-   PROGRESSO
-============================== */
+
+/* ==========================================
+   PROGRESSO GERAL
+========================================== */
 
 .progresso-geral{
+
     width:92%;
+
     max-width:850px;
-    margin:0 auto 22px;
+
+    margin:
+        0
+        auto
+        22px;
+
     background:#111827;
-    border:1px solid #ffffff12;
+
+    border:
+        1px solid
+        #ffffff12;
+
     border-radius:18px;
+
     padding:20px;
+
 }
+
 
 .progresso-topo{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     margin-bottom:10px;
+
 }
+
 
 .progresso-topo strong{
+
     font-size:16px;
+
 }
+
 
 .porcentagem{
+
     color:#60a5fa;
+
     font-weight:bold;
+
 }
+
 
 .barra{
+
     width:100%;
+
     height:10px;
+
     background:#1e293b;
+
     border-radius:20px;
+
     overflow:hidden;
+
 }
+
 
 .barra-preenchida{
+
     width:0%;
+
     height:100%;
+
     background:#3b82f6;
+
     transition:.3s;
+
 }
 
-/* ==============================
+
+/* ==========================================
    CONTAINER
-============================== */
+========================================== */
 
 .container{
+
     width:92%;
+
     max-width:850px;
+
     margin:auto;
+
     padding-bottom:40px;
+
 }
 
-/* ==============================
+
+/* ==========================================
    MÓDULOS
-============================== */
+========================================== */
 
 .modulo{
+
     background:#111827e8;
-    border:1px solid #ffffff12;
+
+    border:
+        1px solid
+        #ffffff12;
+
     border-radius:18px;
+
     margin-bottom:18px;
+
     overflow:hidden;
+
 }
+
 
 .modulo-titulo{
+
     padding:18px;
+
     display:flex;
+
     align-items:center;
+
     gap:14px;
+
     cursor:pointer;
+
 }
+
+
+.modulo-titulo:active{
+
+    background:#ffffff08;
+
+}
+
 
 .modulo-icon{
+
     font-size:26px;
+
 }
+
 
 .modulo-info{
+
     flex:1;
+
 }
+
 
 .modulo-info h2{
+
     font-size:18px;
+
 }
+
 
 .modulo-info p{
+
     color:#94a3b8;
+
     font-size:12px;
+
     margin-top:4px;
+
 }
+
 
 .modulo-progresso{
+
     font-size:11px;
+
     color:#60a5fa;
+
     margin-top:6px;
+
 }
+
 
 .seta{
+
     font-size:20px;
+
     color:#64748b;
+
 }
 
-/* ==============================
+
+/* ==========================================
    ASSUNTOS
-============================== */
+========================================== */
 
 .assuntos{
+
     display:none;
-    padding:0 12px 12px;
+
+    padding:
+        0
+        12px
+        12px;
+
 }
+
 
 .assuntos.aberto{
+
     display:block;
+
 }
+
 
 .assunto{
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
+
     padding:14px;
+
     margin-top:7px;
+
     border-radius:12px;
+
     background:#ffffff08;
-    border:1px solid #ffffff0d;
+
+    border:
+        1px solid
+        #ffffff0d;
+
     color:#e2e8f0;
+
     text-decoration:none;
+
     transition:.2s;
+
 }
+
 
 .assunto:hover{
+
     background:#3b82f61a;
+
     transform:translateX(3px);
+
 }
+
 
 .assunto.concluida{
+
     border-color:#22c55e55;
+
     background:#22c55e0c;
+
 }
+
+
+/* ==========================================
+   NÚMERO DA AULA
+========================================== */
 
 .numero{
+
     width:32px;
+
     height:32px;
+
     border-radius:9px;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
     background:#3b82f624;
+
     color:#60a5fa;
+
     font-weight:bold;
+
     font-size:13px;
+
     flex-shrink:0;
+
 }
+
 
 .assunto.concluida .numero{
+
     background:#22c55e22;
+
     color:#4ade80;
+
 }
+
+
+/* ==========================================
+   TEXTO DA AULA
+========================================== */
 
 .assunto-texto{
+
     flex:1;
+
 }
+
 
 .assunto-texto strong{
+
     display:block;
+
     font-size:14px;
+
 }
+
 
 .assunto-texto span{
+
     display:block;
+
     color:#64748b;
+
     font-size:11px;
+
     margin-top:3px;
+
 }
+
+
+/* ==========================================
+   CHECK
+========================================== */
 
 .check{
+
     width:27px;
+
     height:27px;
+
     border-radius:50%;
-    border:1px solid #475569;
+
+    border:
+        1px solid
+        #475569;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
     color:transparent;
+
     font-size:14px;
+
     cursor:pointer;
+
     flex-shrink:0;
+
 }
+
 
 .assunto.concluida .check{
+
     background:#22c55e;
+
     border-color:#22c55e;
+
     color:white;
+
 }
 
-/* ==============================
+
+/* ==========================================
    RODAPÉ
-============================== */
+========================================== */
 
 footer{
+
     text-align:center;
+
     color:#475569;
+
     font-size:12px;
-    padding:10px 20px 30px;
+
+    padding:
+        10px
+        20px
+        30px;
+
 }
 
-/* ==============================
+
+/* ==========================================
    CELULAR
-============================== */
+========================================== */
 
 @media(max-width:600px){
 
     header{
+
         padding-top:35px;
+
     }
 
+
     header h1{
+
         font-size:28px;
+
     }
+
 
     .container,
     .progresso-geral{
+
         width:94%;
+
     }
 
+
     .modulo-titulo{
+
         padding:16px;
+
     }
 
 }
@@ -321,44 +536,34 @@ footer{
 
 </head>
 
+
 <body>
 
 
 <!-- ==========================================
-     TELA DE VERIFICAÇÃO
+     CABEÇALHO
 ========================================== -->
-
-<div id="carregando">
-
-    <strong>🔐 Verificando acesso...</strong>
-
-    <span id="textoCarregando">
-        Aguarde um momento.
-    </span>
-
-    <div id="mensagemErro"></div>
-
-</div>
-
-
-<!-- ==========================================
-     CONTEÚDO DO CURSO
-========================================== -->
-
-<div id="conteudoCurso">
-
 
 <header>
 
 <h1>
-Matemática <span class="azul">para Leigos</span>
+
+Matemática
+<span class="azul">
+para Leigos
+</span>
+
 </h1>
 
+
 <p class="subtitulo">
+
 Matemática para Concursos
+
 </p>
 
 </header>
+
 
 
 <!-- ==========================================
@@ -369,22 +574,27 @@ Matemática para Concursos
 
 <div class="progresso-topo">
 
-<strong>📊 Seu progresso</strong>
+<strong>
+📊 Seu progresso
+</strong>
+
 
 <span
-class="porcentagem"
-id="progressoGeral"
+    class="porcentagem"
+    id="progressoGeral"
 >
 0%
 </span>
 
 </div>
 
+
 <div class="barra">
 
 <div
-class="barra-preenchida"
-id="barraGeral">
+    class="barra-preenchida"
+    id="barraGeral"
+>
 </div>
 
 </div>
@@ -392,11 +602,1025 @@ id="barraGeral">
 </section>
 
 
-<main
-class="container"
-id="listaModulos">
+
+<!-- ==========================================
+     CONTEÚDO
+========================================== -->
+
+<main class="container">
+
+
+
+<!-- ==========================================
+     MATEMÁTICA BÁSICA
+========================================== -->
+
+<section class="modulo">
+
+
+<div
+    class="modulo-titulo"
+    onclick="abrirModulo('basica', this)"
+>
+
+
+<div class="modulo-icon">
+📘
+</div>
+
+
+<div class="modulo-info">
+
+<h2>
+Matemática Básica
+</h2>
+
+
+<p>
+Fundamentos essenciais para concursos
+</p>
+
+
+<div
+    class="modulo-progresso"
+    id="prog-basica"
+>
+0%
+</div>
+
+</div>
+
+
+<div class="seta">
+›
+</div>
+
+
+</div>
+
+
+
+<div
+    class="assuntos"
+    id="basica"
+>
+
+
+<a
+    href="aula01.html"
+    class="assunto"
+    data-aula="1"
+>
+
+<div class="numero">
+01
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Operações Fundamentais
+</strong>
+
+<span>
+Operações e expressões numéricas
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,1)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula02.html"
+    class="assunto"
+    data-aula="2"
+>
+
+<div class="numero">
+02
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Números Naturais, Inteiros e Racionais
+</strong>
+
+<span>
+Conjuntos, operações e comparação
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,2)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula03.html"
+    class="assunto"
+    data-aula="3"
+>
+
+<div class="numero">
+03
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Números Primos, Fatoração e Divisibilidade
+</strong>
+
+<span>
+Primos, divisores e critérios
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,3)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula04.html"
+    class="assunto"
+    data-aula="4"
+>
+
+<div class="numero">
+04
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+MMC e MDC
+</strong>
+
+<span>
+Múltiplos e divisores
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,4)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula05.html"
+    class="assunto"
+    data-aula="5"
+>
+
+<div class="numero">
+05
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Frações, Decimais e Dízimas Periódicas
+</strong>
+
+<span>
+Operações e conversões
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,5)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula06.html"
+    class="assunto"
+    data-aula="6"
+>
+
+<div class="numero">
+06
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Potenciação e Radiciação
+</strong>
+
+<span>
+Propriedades e operações
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,6)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula07.html"
+    class="assunto"
+    data-aula="7"
+>
+
+<div class="numero">
+07
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Notação Científica
+</strong>
+
+<span>
+Potências de 10 e operações
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,7)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula08.html"
+    class="assunto"
+    data-aula="8"
+>
+
+<div class="numero">
+08
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Razão e Proporção
+</strong>
+
+<span>
+Razões, proporções e aplicações
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,8)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula09.html"
+    class="assunto"
+    data-aula="9"
+>
+
+<div class="numero">
+09
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Divisão Proporcional
+</strong>
+
+<span>
+Direta e inversamente proporcional
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,9)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula10.html"
+    class="assunto"
+    data-aula="10"
+>
+
+<div class="numero">
+10
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Regra de Três Simples
+</strong>
+
+<span>
+Grandezas proporcionais
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,10)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula11.html"
+    class="assunto"
+    data-aula="11"
+>
+
+<div class="numero">
+11
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Regra de Três Composta
+</strong>
+
+<span>
+Múltiplas grandezas
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,11)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula12.html"
+    class="assunto"
+    data-aula="12"
+>
+
+<div class="numero">
+12
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Porcentagem
+</strong>
+
+<span>
+Cálculo e interpretação
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,12)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula13.html"
+    class="assunto"
+    data-aula="13"
+>
+
+<div class="numero">
+13
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Aumentos e Descontos
+</strong>
+
+<span>
+Variações percentuais
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,13)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula14.html"
+    class="assunto"
+    data-aula="14"
+>
+
+<div class="numero">
+14
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Juros Simples
+</strong>
+
+<span>
+Capital, taxa, juros e montante
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,14)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula15.html"
+    class="assunto"
+    data-aula="15"
+>
+
+<div class="numero">
+15
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Juros Compostos
+</strong>
+
+<span>
+Capitalização e montante
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,15)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula16.html"
+    class="assunto"
+    data-aula="16"
+>
+
+<div class="numero">
+16
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Sistema de Medidas
+</strong>
+
+<span>
+Comprimento, massa, capacidade e tempo
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,16)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula17.html"
+    class="assunto"
+    data-aula="17"
+>
+
+<div class="numero">
+17
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Conversão de Unidades
+</strong>
+
+<span>
+Comprimento, área e volume
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,17)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula18.html"
+    class="assunto"
+    data-aula="18"
+>
+
+<div class="numero">
+18
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Média Aritmética
+</strong>
+
+<span>
+Média simples e aplicações
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,18)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula19.html"
+    class="assunto"
+    data-aula="19"
+>
+
+<div class="numero">
+19
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Média Ponderada
+</strong>
+
+<span>
+Pesos e problemas
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,19)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula20.html"
+    class="assunto"
+    data-aula="20"
+>
+
+<div class="numero">
+20
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Média Geométrica
+</strong>
+
+<span>
+Conceito e aplicações
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,20)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula21.html"
+    class="assunto"
+    data-aula="21"
+>
+
+<div class="numero">
+21
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Estatística Básica
+</strong>
+
+<span>
+Média, mediana, moda e amplitude
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,21)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula22.html"
+    class="assunto"
+    data-aula="22"
+>
+
+<div class="numero">
+22
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Tabelas e Gráficos
+</strong>
+
+<span>
+Interpretação de dados
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,22)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula23.html"
+    class="assunto"
+    data-aula="23"
+>
+
+<div class="numero">
+23
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Sequências Numéricas
+</strong>
+
+<span>
+Padrões e leis de formação
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,23)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula24.html"
+    class="assunto"
+    data-aula="24"
+>
+
+<div class="numero">
+24
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Problemas Aritméticos
+</strong>
+
+<span>
+Interpretação e modelagem
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,24)"
+>
+✓
+</div>
+
+</a>
+
+
+
+<a
+    href="aula25.html"
+    class="assunto"
+    data-aula="25"
+>
+
+<div class="numero">
+25
+</div>
+
+<div class="assunto-texto">
+
+<strong>
+Problemas de Concurso
+</strong>
+
+<span>
+Questões integradas
+</span>
+
+</div>
+
+<div
+    class="check"
+    onclick="concluir(event,25)"
+>
+✓
+</div>
+
+</a>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================================
+     GEOMETRIA
+========================================== -->
+
+<section class="modulo">
+
+
+<div
+    class="modulo-titulo"
+    onclick="abrirModulo('geometria', this)"
+>
+
+
+<div class="modulo-icon">
+📐
+</div>
+
+
+<div class="modulo-info">
+
+<h2>
+Geometria
+</h2>
+
+
+<p>
+Geometria plana, espacial e analítica
+</p>
+
+
+<div
+    class="modulo-progresso"
+    id="prog-geometria"
+>
+0%
+</div>
+
+</div>
+
+
+<div class="seta">
+›
+</div>
+
+
+</div>
+
+
+
+<div
+    class="assuntos"
+    id="geometria"
+>
+</div>
+
+</section>
+
+
+
+<!-- ==========================================
+     ÁLGEBRA
+========================================== -->
+
+<section class="modulo">
+
+
+<div
+    class="modulo-titulo"
+    onclick="abrirModulo('algebra', this)"
+>
+
+
+<div class="modulo-icon">
+🔢
+</div>
+
+
+<div class="modulo-info">
+
+<h2>
+Álgebra
+</h2>
+
+
+<p>
+Equações, funções e estruturas algébricas
+</p>
+
+
+<div
+    class="modulo-progresso"
+    id="prog-algebra"
+>
+0%
+</div>
+
+</div>
+
+
+<div class="seta">
+›
+</div>
+
+
+</div>
+
+
+
+<div
+    class="assuntos"
+    id="algebra"
+>
+</div>
+
+</section>
+
+
+
 </main>
 
+
+
+<!-- ==========================================
+     RODAPÉ
+========================================== -->
 
 <footer>
 
@@ -405,555 +1629,240 @@ Matemática para Leigos • Matemática para Concursos
 </footer>
 
 
-</div>
 
+<!-- ==========================================
+     JAVASCRIPT
+========================================== -->
 
 <script>
 
-/* ==================================================
+
+/* ==========================================
    SUPABASE
-================================================== */
+========================================== */
 
 const SUPABASE_URL =
-"https://ugcrffuabvlgobtfcuxf.supabase.co";
+    "https://ugcrffuabvlgobtfcuxf.supabase.co";
+
 
 const SUPABASE_KEY =
-"sb_publishable_aCd5M2fKeUlZ6xgFZxefzA_YfxGKznF";
+    "sb_publishable_aCd5M2fKeUlZ6xgFZxefzA_YfxGKznF";
+
 
 const supabaseClient =
-window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
-/* ==================================================
-   CONTEÚDO DO CURSO
-================================================== */
 
-const modulos = [
+/* ==========================================
+   LISTA DE GEOMETRIA
+========================================== */
 
-{
-    id:"basica",
-    icone:"📘",
-    titulo:"Matemática Básica",
-    descricao:"Fundamentos essenciais para concursos",
+const geometria = [
 
-    aulas:[
-
-        ["Operações Fundamentais","Operações e expressões numéricas"],
-        ["Números Naturais, Inteiros e Racionais","Conjuntos, operações e comparação"],
-        ["Números Primos, Fatoração e Divisibilidade","Primos, divisores e critérios"],
-        ["MMC e MDC","Múltiplos e divisores"],
-        ["Frações, Decimais e Dízimas Periódicas","Operações e conversões"],
-        ["Potenciação e Radiciação","Propriedades e operações"],
-        ["Notação Científica","Potências de 10 e operações"],
-        ["Razão e Proporção","Razões, proporções e aplicações"],
-        ["Divisão Proporcional","Direta e inversamente proporcional"],
-        ["Regra de Três Simples","Grandezas proporcionais"],
-        ["Regra de Três Composta","Múltiplas grandezas"],
-        ["Porcentagem","Cálculo e interpretação"],
-        ["Aumentos e Descontos","Variações percentuais"],
-        ["Juros Simples","Capital, taxa, juros e montante"],
-        ["Juros Compostos","Capitalização e montante"],
-        ["Sistema de Medidas","Comprimento, massa, capacidade e tempo"],
-        ["Conversão de Unidades","Comprimento, área e volume"],
-        ["Média Aritmética","Média simples e aplicações"],
-        ["Média Ponderada","Pesos e problemas"],
-        ["Média Geométrica","Conceito e aplicações"],
-        ["Estatística Básica","Média, mediana, moda e amplitude"],
-        ["Tabelas e Gráficos","Interpretação de dados"],
-        ["Sequências Numéricas","Padrões e leis de formação"],
-        ["Problemas Aritméticos","Interpretação e modelagem"],
-        ["Problemas de Concurso","Questões integradas"]
-
-    ]
-},
-
-{
-    id:"geometria",
-    icone:"📐",
-    titulo:"Geometria",
-    descricao:"Geometria plana, espacial e analítica",
-
-    aulas:[
-
-        ["Conceitos Fundamentais da Geometria","Conteúdo de geometria para concursos"],
-        ["Ângulos","Conteúdo de geometria para concursos"],
-        ["Retas Paralelas e Transversais","Conteúdo de geometria para concursos"],
-        ["Triângulos","Conteúdo de geometria para concursos"],
-        ["Congruência de Triângulos","Conteúdo de geometria para concursos"],
-        ["Semelhança de Triângulos","Conteúdo de geometria para concursos"],
-        ["Teorema de Tales","Conteúdo de geometria para concursos"],
-        ["Teorema de Pitágoras","Conteúdo de geometria para concursos"],
-        ["Relações Métricas no Triângulo Retângulo","Conteúdo de geometria para concursos"],
-        ["Perímetro","Conteúdo de geometria para concursos"],
-        ["Áreas de Figuras Planas","Conteúdo de geometria para concursos"],
-        ["Circunferência e Círculo","Conteúdo de geometria para concursos"],
-        ["Arcos, Cordas e Ângulos na Circunferência","Conteúdo de geometria para concursos"],
-        ["Polígonos","Conteúdo de geometria para concursos"],
-        ["Soma dos Ângulos dos Polígonos","Conteúdo de geometria para concursos"],
-        ["Quadriláteros","Conteúdo de geometria para concursos"],
-        ["Áreas de Figuras Compostas","Conteúdo de geometria para concursos"],
-        ["Escalas","Conteúdo de geometria para concursos"],
-        ["Geometria Espacial","Conteúdo de geometria para concursos"],
-        ["Prismas e Paralelepípedos","Conteúdo de geometria para concursos"],
-        ["Cubo","Conteúdo de geometria para concursos"],
-        ["Pirâmides","Conteúdo de geometria para concursos"],
-        ["Cilindro","Conteúdo de geometria para concursos"],
-        ["Cone","Conteúdo de geometria para concursos"],
-        ["Esfera","Conteúdo de geometria para concursos"],
-        ["Sólidos Compostos","Conteúdo de geometria para concursos"],
-        ["Conversão de Unidades Geométricas","Conteúdo de geometria para concursos"],
-        ["Geometria Analítica Básica","Conteúdo de geometria para concursos"],
-        ["Problemas de Geometria","Conteúdo de geometria para concursos"],
-        ["Geometria para Concursos","Conteúdo de geometria para concursos"]
-
-    ]
-},
-
-{
-    id:"algebra",
-    icone:"🔢",
-    titulo:"Álgebra",
-    descricao:"Equações, funções e estruturas algébricas",
-
-    aulas:[
-
-        ["Linguagem Algébrica","Conteúdo de álgebra para concursos"],
-        ["Expressões Algébricas","Conteúdo de álgebra para concursos"],
-        ["Produtos Notáveis","Conteúdo de álgebra para concursos"],
-        ["Fatoração Algébrica","Conteúdo de álgebra para concursos"],
-        ["Frações Algébricas","Conteúdo de álgebra para concursos"],
-        ["Equações do 1º Grau","Conteúdo de álgebra para concursos"],
-        ["Problemas com Equações do 1º Grau","Conteúdo de álgebra para concursos"],
-        ["Inequações do 1º Grau","Conteúdo de álgebra para concursos"],
-        ["Sistemas de Equações do 1º Grau","Conteúdo de álgebra para concursos"],
-        ["Problemas com Sistemas","Conteúdo de álgebra para concursos"],
-        ["Equações do 2º Grau","Conteúdo de álgebra para concursos"],
-        ["Relações entre Raízes","Conteúdo de álgebra para concursos"],
-        ["Equações Biquadradas","Conteúdo de álgebra para concursos"],
-        ["Equações Irracionais","Conteúdo de álgebra para concursos"],
-        ["Equações Fracionárias","Conteúdo de álgebra para concursos"],
-        ["Inequações do 2º Grau","Conteúdo de álgebra para concursos"],
-        ["Sistemas de Inequações","Conteúdo de álgebra para concursos"],
-        ["Função -- Conceitos Fundamentais","Conteúdo de álgebra para concursos"],
-        ["Função do 1º Grau","Conteúdo de álgebra para concursos"],
-        ["Gráfico da Função do 1º Grau","Conteúdo de álgebra para concursos"],
-        ["Função do 2º Grau","Conteúdo de álgebra para concursos"],
-        ["Máximos e Mínimos","Conteúdo de álgebra para concursos"],
-        ["Função Modular","Conteúdo de álgebra para concursos"],
-        ["Função Exponencial","Conteúdo de álgebra para concursos"],
-        ["Equações Exponenciais","Conteúdo de álgebra para concursos"],
-        ["Inequações Exponenciais","Conteúdo de álgebra para concursos"],
-        ["Logaritmos","Conteúdo de álgebra para concursos"],
-        ["Equações Logarítmicas","Conteúdo de álgebra para concursos"],
-        ["Inequações Logarítmicas","Conteúdo de álgebra para concursos"],
-        ["Progressão Aritmética -- PA","Conteúdo de álgebra para concursos"],
-        ["Progressão Geométrica -- PG","Conteúdo de álgebra para concursos"],
-        ["Sequências e Padrões","Conteúdo de álgebra para concursos"],
-        ["Sistemas e Problemas Algébricos","Conteúdo de álgebra para concursos"],
-        ["Álgebra para Concursos","Conteúdo de álgebra para concursos"]
-
-    ]
-}
+"Conceitos Fundamentais da Geometria",
+"Ângulos",
+"Retas Paralelas e Transversais",
+"Triângulos",
+"Congruência de Triângulos",
+"Semelhança de Triângulos",
+"Teorema de Tales",
+"Teorema de Pitágoras",
+"Relações Métricas no Triângulo Retângulo",
+"Perímetro",
+"Áreas de Figuras Planas",
+"Circunferência e Círculo",
+"Arcos, Cordas e Ângulos na Circunferência",
+"Polígonos",
+"Soma dos Ângulos dos Polígonos",
+"Quadriláteros",
+"Áreas de Figuras Compostas",
+"Escalas",
+"Geometria Espacial",
+"Prismas e Paralelepípedos",
+"Cubo",
+"Pirâmides",
+"Cilindro",
+"Cone",
+"Esfera",
+"Sólidos Compostos",
+"Conversão de Unidades Geométricas",
+"Geometria Analítica Básica",
+"Problemas de Geometria",
+"Geometria para Concursos"
 
 ];
 
 
-/* ==================================================
-   GERAR OS MÓDULOS
-================================================== */
 
-function gerarCurso(){
+/* ==========================================
+   CRIAR GEOMETRIA
+========================================== */
 
-    const container =
-        document.getElementById("listaModulos");
+const containerGeometria =
+    document.getElementById("geometria");
 
-    let numeroAula = 1;
 
-    modulos.forEach(modulo => {
+geometria.forEach((nome, index) => {
 
-        const section =
-            document.createElement("section");
+    const numeroAula =
+        index + 26;
 
-        section.className = "modulo";
 
-        const titulo =
-            document.createElement("div");
+    const numeroModulo =
+        index + 1;
 
-        titulo.className = "modulo-titulo";
 
-        titulo.onclick =
-            function(){
-                abrirModulo(
-                    modulo.id,
-                    titulo
-                );
-            };
+    containerGeometria.innerHTML += `
 
-        titulo.innerHTML = `
+        <a
+            href="aula${String(numeroAula).padStart(2,"0")}.html"
+            class="assunto"
+            data-aula="${numeroAula}"
+        >
 
-            <div class="modulo-icon">
-                ${modulo.icone}
+            <div class="numero">
+                ${String(numeroModulo).padStart(2,"0")}
             </div>
 
-            <div class="modulo-info">
 
-                <h2>
-                    ${modulo.titulo}
-                </h2>
+            <div class="assunto-texto">
 
-                <p>
-                    ${modulo.descricao}
-                </p>
+                <strong>
+                    ${nome}
+                </strong>
 
-                <div
-                    class="modulo-progresso"
-                    id="prog-${modulo.id}"
-                >
-                    0%
-                </div>
+                <span>
+                    Conteúdo de geometria para concursos
+                </span>
 
             </div>
 
-            <div class="seta">
-                ›
+
+            <div
+                class="check"
+                onclick="concluir(event,${numeroAula})"
+            >
+                ✓
             </div>
 
-        `;
+        </a>
 
-        const assuntos =
-            document.createElement("div");
+    `;
 
-        assuntos.className = "assuntos";
-
-        assuntos.id = modulo.id;
+});
 
 
-        modulo.aulas.forEach(aula => {
 
-            const numero =
-                numeroAula;
+/* ==========================================
+   LISTA DE ÁLGEBRA
+========================================== */
 
-            const link =
-                document.createElement("a");
+const algebra = [
 
-            link.href =
-                `aula${String(numero).padStart(2,"0")}.html`;
+"Linguagem Algébrica",
+"Expressões Algébricas",
+"Produtos Notáveis",
+"Fatoração Algébrica",
+"Frações Algébricas",
+"Equações do 1º Grau",
+"Problemas com Equações do 1º Grau",
+"Inequações do 1º Grau",
+"Sistemas de Equações do 1º Grau",
+"Problemas com Sistemas",
+"Equações do 2º Grau",
+"Relações entre Raízes",
+"Equações Biquadradas",
+"Equações Irracionais",
+"Equações Fracionárias",
+"Inequações do 2º Grau",
+"Sistemas de Inequações",
+"Função -- Conceitos Fundamentais",
+"Função do 1º Grau",
+"Gráfico da Função do 1º Grau",
+"Função do 2º Grau",
+"Máximos e Mínimos",
+"Função Modular",
+"Função Exponencial",
+"Equações Exponenciais",
+"Inequações Exponenciais",
+"Logaritmos",
+"Equações Logarítmicas",
+"Inequações Logarítmicas",
+"Progressão Aritmética -- PA",
+"Progressão Geométrica -- PG",
+"Sequências e Padrões",
+"Sistemas e Problemas Algébricos",
+"Álgebra para Concursos"
 
-            link.className = "assunto";
-
-            link.dataset.aula =
-                numero;
-
-            link.innerHTML = `
-
-                <div class="numero">
-                    ${String(
-                        modulo.aulas.indexOf(aula)+1
-                    ).padStart(2,"0")}
-                </div>
-
-                <div class="assunto-texto">
-
-                    <strong>
-                        ${aula[0]}
-                    </strong>
-
-                    <span>
-                        ${aula[1]}
-                    </span>
-
-                </div>
-
-                <div class="check">
-                    ✓
-                </div>
-
-            `;
-
-
-            const check =
-                link.querySelector(".check");
+];
 
 
-            check.onclick =
-                function(event){
 
-                    concluir(
-                        event,
-                        numero
-                    );
+/* ==========================================
+   CRIAR ÁLGEBRA
+========================================== */
 
-                };
+const containerAlgebra =
+    document.getElementById("algebra");
 
 
-            assuntos.appendChild(link);
+algebra.forEach((nome, index) => {
 
-            numeroAula++;
-
-        });
-
-
-        section.appendChild(titulo);
-
-        section.appendChild(assuntos);
-
-        container.appendChild(section);
-
-    });
-
-}
+    const numeroAula =
+        index + 56;
 
 
-/* ==================================================
+    const numeroModulo =
+        index + 1;
+
+
+    containerAlgebra.innerHTML += `
+
+        <a
+            href="aula${String(numeroAula).padStart(2,"0")}.html"
+            class="assunto"
+            data-aula="${numeroAula}"
+        >
+
+            <div class="numero">
+                ${String(numeroModulo).padStart(2,"0")}
+            </div>
+
+
+            <div class="assunto-texto">
+
+                <strong>
+                    ${nome}
+                </strong>
+
+                <span>
+                    Conteúdo de álgebra para concursos
+                </span>
+
+            </div>
+
+
+            <div
+                class="check"
+                onclick="concluir(event,${numeroAula})"
+            >
+                ✓
+            </div>
+
+        </a>
+
+    `;
+
+});
+
+
+
+/* ==========================================
    ABRIR / FECHAR MÓDULO
-================================================== */
+========================================== */
 
-function abrirModulo(id,elemento){
-
-    const modulo =
-        document.getElementById(id);
-
-    const seta =
-        elemento.querySelector(".seta");
-
-
-    if(
-        modulo.classList.contains("aberto")
-    ){
-
-        modulo.classList.remove("aberto");
-
-        seta.textContent = "›";
-
-    }else{
-
-        modulo.classList.add("aberto");
-
-        seta.textContent = "⌄";
-
-    }
-
-}
-
-
-/* ==================================================
-   CONCLUIR AULA
-================================================== */
-
-function concluir(event,aula){
-
-    event.preventDefault();
-
-    event.stopPropagation();
-
-
-    let concluida =
-        JSON.parse(
-            localStorage.getItem(
-                "aulasConcluidas"
-            ) || "[]"
-        );
-
-
-    if(
-        concluida.includes(aula)
-    ){
-
-        concluida =
-            concluida.filter(
-                numero => numero !== aula
-            );
-
-    }else{
-
-        concluida.push(aula);
-
-    }
-
-
-    localStorage.setItem(
-        "aulasConcluidas",
-        JSON.stringify(concluida)
-    );
-
-
-    atualizarProgresso();
-
-}
-
-
-/* ==================================================
-   ATUALIZAR PROGRESSO
-================================================== */
-
-function atualizarProgresso(){
-
-    const concluida =
-        JSON.parse(
-            localStorage.getItem(
-                "aulasConcluidas"
-            ) || "[]"
-        );
-
-
-    const total =
-        modulos.reduce(
-            (total,modulo) =>
-                total + modulo.aulas.length,
-            0
-        );
-
-
-    const quantidade =
-        concluida.length;
-
-
-    const porcentagem =
-        total === 0
-        ? 0
-        : Math.round(
-            (quantidade / total) * 100
-        );
-
-
-    document.getElementById(
-        "progressoGeral"
-    ).textContent =
-        porcentagem + "%";
-
-
-    document.getElementById(
-        "barraGeral"
-    ).style.width =
-        porcentagem + "%";
-
-
-    /* ==========================
-       ATUALIZAR CADA MÓDULO
-    ========================== */
-
-    let numeroInicial = 1;
-
-
-    modulos.forEach(modulo => {
-
-        const inicio =
-            numeroInicial;
-
-        const fim =
-            numeroInicial +
-            modulo.aulas.length -
-            1;
-
-
-        let feitas = 0;
-
-
-        for(
-            let numero = inicio;
-            numero <= fim;
-            numero++
-        ){
-
-            if(
-                concluida.includes(numero)
-            ){
-
-                feitas++;
-
-            }
-
-        }
-
-
-        const porcentagemModulo =
-            modulo.aulas.length === 0
-            ? 0
-            : Math.round(
-                (feitas /
-                modulo.aulas.length) *
-                100
-            );
-
-
-        const elemento =
-            document.getElementById(
-                `prog-${modulo.id}`
-            );
-
-
-        if(elemento){
-
-            elemento.textContent =
-                `${porcentagemModulo}%`;
-
-        }
-
-
-        numeroInicial =
-            fim + 1;
-
-    });
-
-
-    /* ==========================
-       MARCAR AULAS CONCLUÍDAS
-    ========================== */
-
-    document
-        .querySelectorAll(".assunto")
-        .forEach(item => {
-
-            const aula =
-                Number(
-                    item.dataset.aula
-                );
-
-
-            if(
-                concluida.includes(aula)
-            ){
-
-                item.classList.add(
-                    "concluida"
-                );
-
-            }else{
-
-                item.classList.remove(
-                    "concluida"
-                );
-
-            }
-
-        });
-
-}
-
-
-/* ==================================================
-   MOSTRAR ERRO
-================================================== */
-
-function mostrarErro(mensagem){
-
-    document.getElementById(
-        "textoCarregando"
-    ).style.display = "none";
-
-
-    const erro =
-        document.getElementById(
-            "mensagemErro"
-        );
-
-
-    erro.textContent =
-        mensagem;
-
-
-    erro.style.display =
-  
+function abrirModulo(id, elem
