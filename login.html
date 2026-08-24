@@ -1,5 +1,3 @@
-login.html
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -29,6 +27,12 @@ content="width=device-width, initial-scale=1.0">
    BODY
 ================================ */
 
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
+
 body{
 
     min-height:100vh;
@@ -47,6 +51,9 @@ body{
 
     padding:20px;
 
+    /* Impede qualquer texto solto
+       fora do cartão de aparecer */
+    font-size:0;
 }
 
 
@@ -71,6 +78,9 @@ body{
     box-shadow:
         0 20px 60px rgba(0,0,0,.45);
 
+    /* restaura tamanho do texto */
+    font-size:16px;
+
 }
 
 
@@ -81,7 +91,6 @@ body{
 .icone{
 
     width:70px;
-
     height:70px;
 
     margin:0 auto 18px;
@@ -301,6 +310,29 @@ button{
 
 }
 
+
+/* ================================
+   CELULAR
+================================ */
+
+@media(max-width:480px){
+
+    body{
+
+        padding:15px;
+
+    }
+
+    .card{
+
+        max-width:420px;
+
+        padding:32px 22px;
+
+    }
+
+}
+
 </style>
 
 </head>
@@ -308,169 +340,104 @@ button{
 
 <body>
 
-
-<!-- =================================
-     NÃO COLOQUE "login.html" AQUI
-================================== -->
-
-
 <div class="card">
 
-
     <div class="icone">
-
         π
-
     </div>
 
 
     <h1>
-
         Entrar
-
     </h1>
 
 
     <p class="subtitulo">
-
         Matemática para Leigos
-
     </p>
-
 
 
     <form id="formulario">
 
-
         <label for="email">
-
             E-mail
-
         </label>
 
-
         <input
-
             type="email"
-
             id="email"
-
             placeholder="seuemail@gmail.com"
-
             autocomplete="username"
-
             required
-
         >
-
 
 
         <label for="senha">
-
             Senha
-
         </label>
 
-
         <input
-
             type="password"
-
             id="senha"
-
             placeholder="Digite sua senha"
-
             autocomplete="current-password"
-
             required
-
         >
-
 
 
         <button
-
             type="submit"
-
             class="botao-principal"
-
             id="botao"
-
         >
-
             Entrar
-
         </button>
-
 
     </form>
 
 
-
     <p
-
         class="mensagem"
-
         id="mensagem"
-
     ></p>
-
 
 
     <div class="info">
 
         Acesso exclusivo aos alunos do
-
         <br>
-
         Matemática para Leigos.
 
     </div>
 
 
-
     <a
-
         href="index.html"
-
         class="voltar"
-
     >
-
         ← Voltar
-
     </a>
-
 
 </div>
 
 
-
 <script>
 
-
 /* ==========================================
-   LOGIN PROVISÓRIO
-========================================== */
-
-
-/*
-   DADOS DO LOGIN
+   LOGIN FALSO / PROVISÓRIO
+==========================================
 
    E-mail:
    aluno@gmail.com
 
    Senha:
    123456
-*/
 
-const EMAIL_CORRETO =
-"aluno@gmail.com";
+========================================== */
 
+const EMAIL_CORRETO = "aluno@gmail.com";
 
-const SENHA_CORRETA =
-"123456";
-
+const SENHA_CORRETA = "123456";
 
 
 /* ==========================================
@@ -478,24 +445,19 @@ const SENHA_CORRETA =
 ========================================== */
 
 const formulario =
-document.getElementById("formulario");
-
+    document.getElementById("formulario");
 
 const email =
-document.getElementById("email");
-
+    document.getElementById("email");
 
 const senha =
-document.getElementById("senha");
-
+    document.getElementById("senha");
 
 const botao =
-document.getElementById("botao");
-
+    document.getElementById("botao");
 
 const mensagem =
-document.getElementById("mensagem");
-
+    document.getElementById("mensagem");
 
 
 /* ==========================================
@@ -503,9 +465,7 @@ document.getElementById("mensagem");
 ========================================== */
 
 formulario.addEventListener(
-
     "submit",
-
     function(event){
 
         event.preventDefault();
@@ -513,7 +473,6 @@ formulario.addEventListener(
 
         const emailDigitado =
             email.value.trim();
-
 
         const senhaDigitada =
             senha.value;
@@ -523,19 +482,13 @@ formulario.addEventListener(
 
 
         /* ================================
-           VERIFICAÇÃO
+           LOGIN CORRETO
         ================================= */
 
         if(
-
-            emailDigitado ===
-            EMAIL_CORRETO
-
+            emailDigitado === EMAIL_CORRETO
             &&
-
-            senhaDigitada ===
-            SENHA_CORRETA
-
+            senhaDigitada === SENHA_CORRETA
         ){
 
             botao.disabled = true;
@@ -549,45 +502,38 @@ formulario.addEventListener(
 
 
             mensagem.textContent =
-                "✅ Acesso autorizado!";
+                "✓ Acesso autorizado!";
 
 
             /*
-               Salva o login apenas
+               Marca que o aluno entrou
                neste navegador.
             */
 
             sessionStorage.setItem(
-
                 "alunoLogado",
-
                 "true"
-
             );
 
 
             /*
-               Vai para o curso.
+               Entra no curso.
             */
 
             setTimeout(
-
                 function(){
 
                     window.location.href =
                         "curso.html";
 
                 },
-
-                500
-
+                400
             );
 
 
             return;
 
         }
-
 
 
         /* ================================
@@ -604,7 +550,6 @@ formulario.addEventListener(
 
         botao.disabled = false;
 
-
         botao.textContent =
             "Entrar";
 
@@ -613,7 +558,6 @@ formulario.addEventListener(
 );
 
 </script>
-
 
 </body>
 
