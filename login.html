@@ -4,12 +4,19 @@ login.html
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Entrar - Matemática para Leigos</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Login - Matemática para Leigos</title>
 
 <style>
+
+/* ================================
+   RESET
+================================ */
 
 *{
     margin:0;
@@ -17,37 +24,64 @@ login.html
     box-sizing:border-box;
 }
 
+
+/* ================================
+   BODY
+================================ */
+
 body{
+
     min-height:100vh;
+
     background:#0b1220;
+
     color:white;
+
     font-family:Arial,sans-serif;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
     padding:20px;
+
 }
 
+
+/* ================================
+   CARTÃO
+================================ */
+
 .card{
+
     width:100%;
+
     max-width:420px;
 
     background:#111827;
 
-    border:1px solid rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.10);
 
     border-radius:24px;
 
     padding:35px 25px;
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,.4);
+        0 20px 60px rgba(0,0,0,.45);
+
 }
 
+
+/* ================================
+   ÍCONE
+================================ */
+
 .icone{
+
     width:70px;
+
     height:70px;
 
     margin:0 auto 18px;
@@ -57,21 +91,33 @@ body{
     background:rgba(255,255,255,.08);
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     font-size:36px;
+
 }
 
+
+/* ================================
+   TÍTULO
+================================ */
+
 h1{
+
     text-align:center;
 
     font-size:28px;
 
     margin-bottom:8px;
+
 }
 
+
 .subtitulo{
+
     text-align:center;
 
     color:#94a3b8;
@@ -79,9 +125,16 @@ h1{
     margin-bottom:28px;
 
     font-size:14px;
+
 }
 
+
+/* ================================
+   LABEL
+================================ */
+
 label{
+
     display:block;
 
     color:#cbd5e1;
@@ -89,9 +142,16 @@ label{
     font-size:14px;
 
     margin-bottom:7px;
+
 }
 
+
+/* ================================
+   INPUT
+================================ */
+
 input{
+
     width:100%;
 
     padding:15px;
@@ -109,17 +169,30 @@ input{
     font-size:16px;
 
     outline:none;
+
 }
+
 
 input:focus{
+
     border-color:#3b82f6;
+
 }
+
+
+/* ================================
+   BOTÃO
+================================ */
 
 button{
+
     cursor:pointer;
+
 }
 
+
 .botao-principal{
+
     width:100%;
 
     padding:15px;
@@ -135,19 +208,32 @@ button{
     font-size:16px;
 
     font-weight:bold;
+
 }
+
 
 .botao-principal:hover{
+
     background:#2563eb;
+
 }
 
+
 .botao-principal:disabled{
+
     opacity:.6;
 
     cursor:wait;
+
 }
 
+
+/* ================================
+   MENSAGEM
+================================ */
+
 .mensagem{
+
     min-height:24px;
 
     margin-top:16px;
@@ -159,26 +245,19 @@ button{
     font-size:14px;
 
     line-height:1.5;
+
 }
 
-.voltar{
-    display:block;
 
-    margin-top:18px;
-
-    text-align:center;
-
-    color:#64748b;
-
-    text-decoration:none;
-
-    font-size:13px;
-}
+/* ================================
+   INFORMAÇÃO
+================================ */
 
 .info{
+
     margin-top:22px;
 
-    padding:12px;
+    padding:13px;
 
     border-radius:10px;
 
@@ -191,101 +270,207 @@ button{
     text-align:center;
 
     line-height:1.5;
+
+}
+
+
+/* ================================
+   VOLTAR
+================================ */
+
+.voltar{
+
+    display:block;
+
+    margin-top:18px;
+
+    text-align:center;
+
+    color:#64748b;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+}
+
+
+.voltar:hover{
+
+    color:#94a3b8;
+
 }
 
 </style>
 
 </head>
 
+
 <body>
+
+
+<!-- =================================
+     NÃO COLOQUE "login.html" AQUI
+================================== -->
+
 
 <div class="card">
 
+
     <div class="icone">
+
         π
+
     </div>
 
+
     <h1>
+
         Entrar
+
     </h1>
 
+
     <p class="subtitulo">
+
         Matemática para Leigos
+
     </p>
+
 
 
     <form id="formulario">
 
+
         <label for="email">
+
             E-mail
+
         </label>
 
+
         <input
+
             type="email"
+
             id="email"
+
             placeholder="seuemail@gmail.com"
+
             autocomplete="username"
+
             required
+
         >
+
 
 
         <label for="senha">
+
             Senha
+
         </label>
 
+
         <input
+
             type="password"
+
             id="senha"
+
             placeholder="Digite sua senha"
+
             autocomplete="current-password"
+
             required
+
         >
+
 
 
         <button
+
             type="submit"
+
             class="botao-principal"
+
             id="botao"
+
         >
+
             Entrar
+
         </button>
+
 
     </form>
 
 
+
     <p
+
         class="mensagem"
+
         id="mensagem"
+
     ></p>
+
 
 
     <div class="info">
 
         Acesso exclusivo aos alunos do
+
+        <br>
+
         Matemática para Leigos.
 
     </div>
 
 
+
     <a
+
         href="index.html"
+
         class="voltar"
+
     >
+
         ← Voltar
+
     </a>
+
 
 </div>
 
 
+
 <script>
+
 
 /* ==========================================
    LOGIN PROVISÓRIO
 ========================================== */
 
-const EMAIL_CORRETO = "aluno@gmail.com";
 
-const SENHA_CORRETA = "123456";
+/*
+   DADOS DO LOGIN
+
+   E-mail:
+   aluno@gmail.com
+
+   Senha:
+   123456
+*/
+
+const EMAIL_CORRETO =
+"aluno@gmail.com";
+
+
+const SENHA_CORRETA =
+"123456";
+
 
 
 /* ==========================================
@@ -295,17 +480,22 @@ const SENHA_CORRETA = "123456";
 const formulario =
 document.getElementById("formulario");
 
+
 const email =
 document.getElementById("email");
+
 
 const senha =
 document.getElementById("senha");
 
+
 const botao =
 document.getElementById("botao");
 
+
 const mensagem =
 document.getElementById("mensagem");
+
 
 
 /* ==========================================
@@ -313,7 +503,9 @@ document.getElementById("mensagem");
 ========================================== */
 
 formulario.addEventListener(
+
     "submit",
+
     function(event){
 
         event.preventDefault();
@@ -322,6 +514,7 @@ formulario.addEventListener(
         const emailDigitado =
             email.value.trim();
 
+
         const senhaDigitada =
             senha.value;
 
@@ -329,75 +522,98 @@ formulario.addEventListener(
         mensagem.textContent = "";
 
 
-        if(!emailDigitado || !senhaDigitada){
+        /* ================================
+           VERIFICAÇÃO
+        ================================= */
+
+        if(
+
+            emailDigitado ===
+            EMAIL_CORRETO
+
+            &&
+
+            senhaDigitada ===
+            SENHA_CORRETA
+
+        ){
+
+            botao.disabled = true;
+
+            botao.textContent =
+                "Entrando...";
+
+
+            mensagem.style.color =
+                "#4ade80";
+
 
             mensagem.textContent =
-                "Preencha e-mail e senha.";
-
-            return;
-        }
+                "✅ Acesso autorizado!";
 
 
-        botao.disabled = true;
+            /*
+               Salva o login apenas
+               neste navegador.
+            */
 
-        botao.textContent =
-            "Entrando...";
+            sessionStorage.setItem(
 
+                "alunoLogado",
 
-        setTimeout(function(){
+                "true"
 
-
-            if(
-                emailDigitado === EMAIL_CORRETO &&
-                senhaDigitada === SENHA_CORRETA
-            ){
-
-                /*
-                    Marca que o aluno entrou.
-                */
-
-                sessionStorage.setItem(
-                    "alunoLogado",
-                    "true"
-                );
+            );
 
 
-                mensagem.style.color =
-                    "#4ade80";
+            /*
+               Vai para o curso.
+            */
 
-                mensagem.textContent =
-                    "Acesso autorizado!";
+            setTimeout(
 
-
-                setTimeout(function(){
+                function(){
 
                     window.location.href =
                         "curso.html";
 
-                },500);
+                },
+
+                500
+
+            );
 
 
-            }else{
+            return;
 
-                mensagem.style.color =
-                    "#fbbf24";
+        }
 
-                mensagem.textContent =
-                    "E-mail ou senha incorretos.";
 
-                botao.disabled = false;
 
-                botao.textContent =
-                    "Entrar";
+        /* ================================
+           LOGIN INCORRETO
+        ================================= */
 
-            }
+        mensagem.style.color =
+            "#fbbf24";
 
-        },500);
+
+        mensagem.textContent =
+            "E-mail ou senha incorretos.";
+
+
+        botao.disabled = false;
+
+
+        botao.textContent =
+            "Entrar";
 
     }
+
 );
 
 </script>
+
 
 </body>
 
