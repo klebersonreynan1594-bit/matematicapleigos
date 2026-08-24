@@ -1,519 +1,520 @@
+login.html
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login - Matemática para Leigos</title>
+<title>Login - Matemática para Leigos</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        body {
-            min-height: 100vh;
-            background: #0b1220;
-            color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+body{
+    min-height:100vh;
+    background:#0b1220;
+    color:white;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
 
-        .card {
-            width: 100%;
-            max-width: 420px;
-            background: #111827;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 24px;
-            padding: 35px 25px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-        }
+.card{
+    width:100%;
+    max-width:420px;
+    background:#111827;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:24px;
+    padding:35px 25px;
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
 
-        .icone {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 18px;
-            border-radius: 18px;
-            background: rgba(255,255,255,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-        }
+.icone{
+    width:70px;
+    height:70px;
+    margin:0 auto 18px;
+    border-radius:18px;
+    background:rgba(255,255,255,.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:36px;
+}
 
-        h1 {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
+h1{
+    text-align:center;
+    font-size:28px;
+    margin-bottom:8px;
+}
 
-        .subtitulo {
-            text-align: center;
-            color: #94a3b8;
-            margin-bottom: 28px;
-            font-size: 14px;
-        }
+.subtitulo{
+    text-align:center;
+    color:#94a3b8;
+    margin-bottom:28px;
+    font-size:14px;
+}
 
-        label {
-            display: block;
-            color: #cbd5e1;
-            font-size: 14px;
-            margin-bottom: 7px;
-        }
+label{
+    display:block;
+    color:#cbd5e1;
+    font-size:14px;
+    margin-bottom:7px;
+}
 
-        input {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 17px;
-            border-radius: 12px;
-            border: 1px solid #334155;
-            background: #0f172a;
-            color: white;
-            font-size: 16px;
-            outline: none;
-        }
+input{
+    width:100%;
+    padding:15px;
+    margin-bottom:17px;
+    border-radius:12px;
+    border:1px solid #334155;
+    background:#0f172a;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
 
-        input:focus {
-            border-color: #3b82f6;
-        }
+input:focus{
+    border-color:#3b82f6;
+}
 
-        .botao-principal {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 12px;
-            background: #3b82f6;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 4px;
-        }
+button{
+    cursor:pointer;
+}
 
-        .botao-principal:hover {
-            background: #2563eb;
-        }
+.botao-principal{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#3b82f6;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
 
-        .botao-principal:disabled {
-            opacity: 0.6;
-            cursor: wait;
-        }
+.botao-principal:hover{
+    background:#2563eb;
+}
 
-        .trocar {
-            display: block;
-            width: 100%;
-            margin-top: 20px;
-            padding: 10px;
-            border: none;
-            background: transparent;
-            color: #60a5fa;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            text-align: center;
-            cursor: pointer;
-        }
+.botao-principal:disabled{
+    opacity:.6;
+    cursor:wait;
+}
 
-        .trocar:hover {
-            color: #93c5fd;
-            text-decoration: underline;
-        }
+.trocar{
+    display:block;
+    width:100%;
+    margin-top:20px;
+    padding:10px;
+    border:none;
+    background:transparent;
+    color:#60a5fa;
+    font-size:14px;
+}
 
-        .mensagem {
-            min-height: 24px;
-            margin-top: 16px;
-            text-align: center;
-            color: #fbbf24;
-            font-size: 14px;
-            line-height: 1.5;
-        }
+.mensagem{
+    min-height:24px;
+    margin-top:16px;
+    text-align:center;
+    color:#fbbf24;
+    font-size:14px;
+    line-height:1.5;
+}
 
-        .voltar {
-            display: block;
-            margin-top: 18px;
-            text-align: center;
-            color: #64748b;
-            text-decoration: none;
-            font-size: 13px;
-        }
-
-        .voltar:hover {
-            color: #94a3b8;
-        }
-    </style>
+.voltar{
+    display:block;
+    margin-top:18px;
+    text-align:center;
+    color:#64748b;
+    text-decoration:none;
+    font-size:13px;
+}
+</style>
 </head>
 
 <body>
 
-    <div class="card">
+<div class="card">
 
-        <div class="icone">π</div>
+<div class="icone">π</div>
 
-        <h1 id="titulo">Entrar</h1>
+<h1 id="titulo">Entrar</h1>
 
-        <p class="subtitulo">
-            Matemática para Leigos
-        </p>
+<p class="subtitulo">
+Matemática para Leigos
+</p>
 
-        <form id="formulario">
+<form id="formulario">
 
-            <label for="email">E-mail</label>
+<label for="email">E-mail</label>
 
-            <input
-                type="email"
-                id="email"
-                placeholder="seuemail@gmail.com"
-                autocomplete="email"
-                required
-            >
+<input
+type="email"
+id="email"
+placeholder="seuemail@gmail.com"
+autocomplete="email"
+required
+>
 
-            <label for="senha">Senha</label>
+<label for="senha">Senha</label>
 
-            <input
-                type="password"
-                id="senha"
-                placeholder="Digite sua senha"
-                autocomplete="current-password"
-                minlength="6"
-                required
-            >
+<input
+type="password"
+id="senha"
+placeholder="Digite sua senha"
+autocomplete="current-password"
+minlength="6"
+required
+>
 
-            <button
-                type="submit"
-                class="botao-principal"
-                id="botao"
-            >
-                Entrar
-            </button>
+<button
+type="submit"
+class="botao-principal"
+id="botao"
+>
+Entrar
+</button>
 
-        </form>
+</form>
 
-        <p
-            class="mensagem"
-            id="mensagem"
-        ></p>
+<p class="mensagem" id="mensagem"></p>
 
-        <button
-            type="button"
-            class="trocar"
-            id="trocar"
-        >
-            Ainda não tenho uma conta
-        </button>
+<button
+type="button"
+class="trocar"
+id="trocar"
+>
+Ainda não tenho uma conta
+</button>
 
-        <a
-            href="index.html"
-            class="voltar"
-        >
-            ← Voltar
-        </a>
+<a href="index.html" class="voltar">
+← Voltar
+</a>
 
-    </div>
+</div>
 
+<script>
 
-    <script>
+/* ==========================================
+   SUPABASE
+========================================== */
 
-        // ==========================================
-        // SUPABASE
-        // ==========================================
+const SUPABASE_URL =
+"https://ugcrffuabvlgobtfcuxf.supabase.co";
 
-        const SUPABASE_URL =
-            "https://ugcrffuabvlgobtfcuxf.supabase.co";
+const SUPABASE_KEY =
+"sb_publishable_aCd5M2fKeUlZ6xgFZxefzA_YfxGKznF";
 
-        const SUPABASE_KEY =
-            "sb_publishable_aCd5M2fKeUlZ6xgFZxefzA_YfxGKznF";
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
-        const supabaseClient =
-            window.supabase.createClient(
-                SUPABASE_URL,
-                SUPABASE_KEY
-            );
 
+/* ==========================================
+   ELEMENTOS
+========================================== */
 
-        // ==========================================
-        // ELEMENTOS
-        // ==========================================
+const formulario =
+document.getElementById("formulario");
 
-        const formulario =
-            document.getElementById("formulario");
+const titulo =
+document.getElementById("titulo");
 
-        const titulo =
-            document.getElementById("titulo");
+const botao =
+document.getElementById("botao");
 
-        const botao =
-            document.getElementById("botao");
+const trocar =
+document.getElementById("trocar");
 
-        const trocar =
-            document.getElementById("trocar");
+const mensagem =
+document.getElementById("mensagem");
 
-        const mensagem =
-            document.getElementById("mensagem");
+let modoCadastro = false;
 
 
-        // ==========================================
-        // MODO
-        // ==========================================
+/* ==========================================
+   TROCAR LOGIN / CADASTRO
+========================================== */
 
-        let modoCadastro = false;
+trocar.addEventListener("click",function(){
 
+modoCadastro = !modoCadastro;
 
-        // ==========================================
-        // TROCAR LOGIN / CADASTRO
-        // ==========================================
+mensagem.textContent = "";
 
-        trocar.addEventListener("click", function () {
+if(modoCadastro){
 
-            modoCadastro = !modoCadastro;
+titulo.textContent = "Criar conta";
 
-            mensagem.textContent = "";
+botao.textContent = "Criar conta";
 
-            if (modoCadastro) {
+trocar.textContent =
+"Já tenho uma conta";
 
-                titulo.textContent = "Criar conta";
+}else{
 
-                botao.textContent = "Criar conta";
+titulo.textContent = "Entrar";
 
-                trocar.textContent =
-                    "Já tenho uma conta";
+botao.textContent = "Entrar";
 
-                document
-                    .getElementById("senha")
-                    .setAttribute(
-                        "autocomplete",
-                        "new-password"
-                    );
+trocar.textContent =
+"Ainda não tenho uma conta";
 
-            } else {
+}
 
-                titulo.textContent = "Entrar";
+});
 
-                botao.textContent = "Entrar";
 
-                trocar.textContent =
-                    "Ainda não tenho uma conta";
+/* ==========================================
+   FORMULÁRIO
+========================================== */
 
-                document
-                    .getElementById("senha")
-                    .setAttribute(
-                        "autocomplete",
-                        "current-password"
-                    );
+formulario.addEventListener(
+"submit",
+async function(event){
 
-            }
+event.preventDefault();
 
-        });
+const email =
+document.getElementById("email")
+.value
+.trim();
 
+const senha =
+document.getElementById("senha")
+.value;
 
-        // ==========================================
-        // FORMULÁRIO
-        // ==========================================
+mensagem.textContent = "";
 
-        formulario.addEventListener(
-            "submit",
-            async function (event) {
+if(!email || !senha){
 
-                event.preventDefault();
+mensagem.textContent =
+"Preencha e-mail e senha.";
 
-                const email =
-                    document
-                        .getElementById("email")
-                        .value
-                        .trim();
+return;
 
-                const senha =
-                    document
-                        .getElementById("senha")
-                        .value;
+}
 
+if(senha.length < 6){
 
-                if (!email || !senha) {
+mensagem.textContent =
+"A senha precisa ter pelo menos 6 caracteres.";
 
-                    mensagem.textContent =
-                        "Preencha e-mail e senha.";
+return;
 
-                    return;
-                }
+}
 
+botao.disabled = true;
 
-                if (senha.length < 6) {
+mensagem.textContent =
+"Aguarde...";
 
-                    mensagem.textContent =
-                        "A senha precisa ter pelo menos 6 caracteres.";
 
-                    return;
-                }
+/* ==========================================
+   CADASTRO
+========================================== */
 
+if(modoCadastro){
 
-                botao.disabled = true;
+const {
+data,
+error
+} =
+await supabaseClient.auth.signUp({
 
-                mensagem.textContent =
-                    "Aguarde...";
+email:email,
 
+password:senha
 
-                // ======================================
-                // CADASTRO
-                // ======================================
+});
 
-                if (modoCadastro) {
 
-                    const { data, error } =
-                        await supabaseClient.auth.signUp({
+if(error){
 
-                            email: email,
+console.error(error);
 
-                            password: senha,
+mensagem.textContent =
+error.message;
 
-                            options: {
-                                emailRedirectTo:
-                                    window.location.origin +
-                                    "/curso.html"
-                            }
+botao.disabled = false;
 
-                        });
+return;
 
+}
 
-                    if (error) {
 
-                        console.error(error);
+/*
+   CRIAR REGISTRO DE ACESSO
+*/
 
-                        mensagem.textContent =
-                            error.message;
+if(data.user){
 
-                        botao.disabled = false;
+const {
+error: erroAcesso
+} =
+await supabaseClient
+.from("acessos")
+.insert({
 
-                        return;
-                    }
+user_id:data.user.id,
 
+liberado:false
 
-                    mensagem.textContent =
-                        "Conta criada! Verifique seu e-mail para confirmar o cadastro.";
+});
 
-                    botao.disabled = false;
 
-                    return;
-                }
+if(erroAcesso){
 
+console.error(
+"Erro ao criar acesso:",
+erroAcesso
+);
 
-                // ======================================
-                // LOGIN
-                // ======================================
+}
 
-                const { data, error } =
-                    await supabaseClient.auth.signInWithPassword({
 
-                        email: email,
+}
 
-                        password: senha
 
-                    });
+/*
+   CONTA CRIADA
+*/
 
+if(data.session){
 
-                if (error) {
+mensagem.textContent =
+"Conta criada! Seu acesso ainda precisa ser liberado.";
 
-                    console.error(error);
+}else{
 
-                    mensagem.textContent =
-                        "E-mail ou senha incorretos.";
+mensagem.textContent =
+"Conta criada! Aguarde a liberação do acesso.";
 
-                    botao.disabled = false;
+}
 
-                    return;
-                }
+botao.disabled = false;
 
+return;
 
-                // ======================================
-                // VERIFICAR USUÁRIO
-                // ======================================
+}
 
-                const usuario = data.user;
 
+/* ==========================================
+   LOGIN
+========================================== */
 
-                if (!usuario) {
+const {
+data,
+error
+} =
+await supabaseClient.auth.signInWithPassword({
 
-                    mensagem.textContent =
-                        "Não foi possível identificar sua conta.";
+email:email,
 
-                    botao.disabled = false;
+password:senha
 
-                    return;
-                }
+});
 
 
-                // ======================================
-                // VERIFICAR AUTORIZAÇÃO NO SUPABASE
-                // ======================================
+if(error){
 
-                const { data: autorizacao, error: erroAutorizacao } =
-                    await supabaseClient
-                        .from("usuarios_autorizados")
-                        .select("autorizado")
-                        .eq("user_id", usuario.id)
-                        .maybeSingle();
+console.error(error);
 
+mensagem.textContent =
+"E-mail ou senha incorretos.";
 
-                if (erroAutorizacao) {
+botao.disabled = false;
 
-                    console.error(
-                        "Erro ao verificar autorização:",
-                        erroAutorizacao
-                    );
+return;
 
-                    mensagem.textContent =
-                        "Não foi possível verificar sua autorização.";
+}
 
-                    await supabaseClient.auth.signOut();
 
-                    botao.disabled = false;
+if(!data.user){
 
-                    return;
-                }
+mensagem.textContent =
+"Não foi possível identificar sua conta.";
 
+botao.disabled = false;
 
-                // ======================================
-                // NÃO AUTORIZADO
-                // ======================================
+return;
 
-                if (
-                    !autorizacao ||
-                    autorizacao.autorizado !== true
-                ) {
+}
 
-                    mensagem.textContent =
-                        "Sua conta ainda não foi autorizada para acessar o curso.";
 
-                    await supabaseClient.auth.signOut();
+/* ==========================================
+   VERIFICAR LIBERAÇÃO
+========================================== */
 
-                    botao.disabled = false;
+const {
+data: acesso,
+error: erroAcesso
+} =
+await supabaseClient
+.from("acessos")
+.select("liberado")
+.eq("user_id",data.user.id)
+.maybeSingle();
 
-                    return;
-                }
 
+if(erroAcesso){
 
-                // ======================================
-                // AUTORIZADO
-                // ======================================
+console.error(erroAcesso);
 
-                mensagem.textContent =
-                    "Login autorizado! Entrando...";
+mensagem.textContent =
+"Não foi possível verificar seu acesso.";
 
+await supabaseClient.auth.signOut();
 
-                setTimeout(function () {
+botao.disabled = false;
 
-                    window.location.href =
-                        "curso.html";
+return;
 
-                }, 500);
+}
 
-            }
-        );
 
-    </script>
+if(!acesso || acesso.liberado !== true){
+
+mensagem.textContent =
+"⏳ Sua conta foi criada, mas seu acesso ainda não foi liberado.";
+
+await supabaseClient.auth.signOut();
+
+botao.disabled = false;
+
+return;
+
+}
+
+
+/* ==========================================
+   ACESSO LIBERADO
+========================================== */
+
+mensagem.textContent =
+"✅ Acesso autorizado!";
+
+setTimeout(function(){
+
+window.location.href =
+"curso.html";
+
+},500);
+
+});
+
+</script>
 
 </body>
 </html>
