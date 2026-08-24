@@ -1,0 +1,261 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Matemática para Leigos</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: #0b1220;
+            color: white;
+            position: relative;
+        }
+
+        /* FUNDO MATEMÁTICO */
+
+        .simbolos {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .simbolo {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.07);
+            font-weight: bold;
+            user-select: none;
+            animation: flutuar 12s ease-in-out infinite;
+        }
+
+        .s1 { top: 8%; left: 8%; font-size: 55px; }
+        .s2 { top: 18%; right: 10%; font-size: 42px; animation-delay: 2s; }
+        .s3 { top: 40%; left: 4%; font-size: 48px; animation-delay: 4s; }
+        .s4 { top: 52%; right: 6%; font-size: 65px; animation-delay: 1s; }
+        .s5 { bottom: 15%; left: 12%; font-size: 38px; animation-delay: 3s; }
+        .s6 { bottom: 8%; right: 15%; font-size: 52px; animation-delay: 5s; }
+        .s7 { top: 30%; left: 45%; font-size: 32px; animation-delay: 2s; }
+        .s8 { bottom: 30%; right: 40%; font-size: 35px; animation-delay: 4s; }
+        .s9 { top: 70%; left: 35%; font-size: 45px; animation-delay: 1s; }
+        .s10 { top: 10%; left: 70%; font-size: 30px; animation-delay: 6s; }
+
+        @keyframes flutuar {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-18px) rotate(5deg);
+            }
+        }
+
+        /* CONTEÚDO */
+
+        .pagina {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 18px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 520px;
+            text-align: center;
+            padding: 42px 28px;
+            border-radius: 28px;
+            background: rgba(17, 24, 39, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+        }
+
+        .icone {
+            width: 82px;
+            height: 82px;
+            margin: 0 auto 20px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        h1 {
+            font-size: 38px;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .destaque {
+            color: #60a5fa;
+        }
+
+        .descricao {
+            color: #cbd5e1;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* BOTÕES */
+
+        .botoes {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .botao {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 17px 20px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.2s ease;
+        }
+
+        .botao-principal {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
+        }
+
+        .botao-principal:hover {
+            transform: translateY(-2px);
+            background: #2563eb;
+        }
+
+        .botao-secundario {
+            background: rgba(255, 255, 255, 0.07);
+            color: #e5e7eb;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        .botao-secundario:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .rodape {
+            margin-top: 28px;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        /* CELULAR */
+
+        @media (max-width: 600px) {
+
+            .card {
+                padding: 35px 20px;
+                border-radius: 24px;
+            }
+
+            h1 {
+                font-size: 31px;
+            }
+
+            .descricao {
+                font-size: 14px;
+            }
+
+            .simbolo {
+                opacity: 0.7;
+            }
+
+            .s1 { font-size: 42px; }
+            .s2 { font-size: 32px; }
+            .s3 { font-size: 38px; }
+            .s4 { font-size: 48px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SÍMBOLOS MATEMÁTICOS DO FUNDO -->
+
+    <div class="simbolos">
+
+        <span class="simbolo s1">π</span>
+        <span class="simbolo s2">√x</span>
+        <span class="simbolo s3">∑</span>
+        <span class="simbolo s4">Δ</span>
+        <span class="simbolo s5">x²</span>
+        <span class="simbolo s6">f(x)</span>
+        <span class="simbolo s7">× ÷ + −</span>
+        <span class="simbolo s8">a² + b² = c²</span>
+        <span class="simbolo s9">∠</span>
+        <span class="simbolo s10">y = ax + b</span>
+
+    </div>
+
+
+    <!-- PÁGINA PRINCIPAL -->
+
+    <main class="pagina">
+
+        <section class="card">
+
+            <div class="icone">
+                π
+            </div>
+
+            <h1>
+                Matemática <span class="destaque">para Leigos</span>
+            </h1>
+
+            <p class="descricao">
+                Aprenda matemática de forma simples, organizada
+                e focada em questões de concursos.
+            </p>
+
+
+            <div class="botoes">
+
+                <!-- BOTÃO PRINCIPAL -->
+                <a href="curso.html" class="botao botao-principal">
+                    🚀 Começar Curso
+                </a>
+
+                <!-- OUTROS BOTÕES -->
+                <a href="curso.html" class="botao botao-secundario">
+                    📚 Ver Módulos
+                </a>
+
+            </div>
+
+
+            <p class="rodape">
+                Matemática • Concursos • Exercícios • Aprovação
+            </p>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
