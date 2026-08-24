@@ -391,21 +391,8 @@
                     }
 
 
-                    if (data.session) {
-
-                        mensagem.textContent =
-                            "Conta criada! Entrando...";
-
-                        window.location.href =
-                            "curso.html";
-
-                    } else {
-
-                        mensagem.textContent =
-                            "Conta criada! Verifique seu e-mail para confirmar o cadastro.";
-
-                    }
-
+                    mensagem.textContent =
+                        "Conta criada! Verifique seu e-mail para confirmar o cadastro.";
 
                     botao.disabled = false;
 
@@ -440,22 +427,88 @@
                 }
 
 
-                if (data.session) {
+                // ======================================
+                // VERIFICAR USUÁRIO
+                // ======================================
+
+                const usuario = data.user;
+
+
+                if (!usuario) {
 
                     mensagem.textContent =
-                        "Login realizado!";
+                        "Não foi possível identificar sua conta.";
 
-                    setTimeout(function () {
+                    botao.disabled = false;
 
-                        window.location.href =
-                            "curso.html";
-
-                    }, 300);
-
+                    return;
                 }
 
 
-                botao.disabled = false;
+                // ======================================
+                // VERIFICAR AUTORIZAÇÃO NO SUPABASE
+                // ======================================
+
+                const { data: autorizacao, error: erroAutorizacao } =
+                    await supabaseClient
+                        .from("usuarios_autorizados")
+                        .select("autorizado")
+                        .eq("user_id", usuario.id)
+                        .maybeSingle();
+
+
+                if (erroAutorizacao) {
+
+                    console.error(
+                        "Erro ao verificar autorização:",
+                        erroAutorizacao
+                    );
+
+                    mensagem.textContent =
+                        "Não foi possível verificar sua autorização.";
+
+                    await supabaseClient.auth.signOut();
+
+                    botao.disabled = false;
+
+                    return;
+                }
+
+
+                // ======================================
+                // NÃO AUTORIZADO
+                // ======================================
+
+                if (
+                    !autorizacao ||
+                    autorizacao.autorizado !== true
+                ) {
+
+                    mensagem.textContent =
+                        "Sua conta ainda não foi autorizada para acessar o curso.";
+
+                    await supabaseClient.auth.signOut();
+
+                    botao.disabled = false;
+
+                    return;
+                }
+
+
+                // ======================================
+                // AUTORIZADO
+                // ======================================
+
+                mensagem.textContent =
+                    "Login autorizado! Entrando...";
+
+
+                setTimeout(function () {
+
+                    window.location.href =
+                        "curso.html";
+
+                }, 500);
 
             }
         );
