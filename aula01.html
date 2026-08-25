@@ -1,79 +1,486 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <script>
-const SUPABASE_URL = "https://ugcrffuabvlgobtfcuxf.supabase.co";
-const SUPABASE_KEY = "sb_publishable_aCd5M2fKeUlZ6xgFZxefzA_YfxGKznF";
 
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+<head>
 
-async function protegerPagina() {
+<meta charset="UTF-8">
 
-    const { data: { session } } =
-        await supabaseClient.auth.getSession();
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    if (!session) {
-        window.location.href = "login.html";
+<title>Aula 01 - Operações Fundamentais</title>
+
+
+<!-- =========================================================
+     SUPABASE
+========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+    "https://ugcrffuabvlgobtfcuxf.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_aCd5M2fKeUlZ6xgFZxefzA_YfxGKznF";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+async function protegerPagina(){
+
+    const {
+        data: { session }
+    } = await supabaseClient.auth.getSession();
+
+
+    if(!session){
+
+        window.location.href =
+            "login.html";
+
     }
+
 }
 
+
 protegerPagina();
-  </script>
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Aula 01 - Operações Fundamentais</title>
+
+</script>
+
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial;background:#0b1220;color:white;padding:25px}
-.container{max-width:800px;margin:auto}
-.voltar,.nav a{display:inline-block;text-decoration:none;color:white;background:#1e293b;padding:14px 20px;border-radius:12px;margin-bottom:25px}
-header{text-align:center;margin:20px 0 30px}
-.numero{color:#60a5fa;font-weight:bold;margin-bottom:10px}
-h1{font-size:32px}
-.sub{color:#94a3b8;margin-top:10px}
-.card{background:#111827;border:1px solid #263244;border-radius:20px;padding:25px;margin-bottom:20px}
-.card h2{margin-bottom:15px}
-video{width:100%;border-radius:15px}
-.botao{display:block;text-align:center;text-decoration:none;color:white;background:#2563eb;padding:16px;border-radius:12px;margin-top:15px}
-.nav{display:flex;justify-content:space-between;gap:10px}
-.nav a{margin:0}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+
+    box-sizing:border-box;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body{
+
+    font-family:Arial,sans-serif;
+
+    background:#0b1220;
+
+    color:white;
+
+    padding:25px;
+
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container{
+
+    max-width:800px;
+
+    margin:auto;
+
+}
+
+
+/* =========================================================
+   BOTÃO VOLTAR
+========================================================= */
+
+.voltar{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#1e293b;
+
+    padding:14px 20px;
+
+    border-radius:12px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+header{
+
+    text-align:center;
+
+    margin:20px 0 30px;
+
+}
+
+
+.numero{
+
+    color:#60a5fa;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+
+h1{
+
+    font-size:32px;
+
+}
+
+
+.sub{
+
+    color:#94a3b8;
+
+    margin-top:10px;
+
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card{
+
+    background:#111827;
+
+    border:1px solid #263244;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:20px;
+
+}
+
+
+.card h2{
+
+    margin-bottom:15px;
+
+}
+
+
+/* =========================================================
+   VÍDEO YOUTUBE
+========================================================= */
+
+.video{
+
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    display:block;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#000;
+
+}
+
+
+/* =========================================================
+   BOTÕES DOS MATERIAIS
+========================================================= */
+
+.botao{
+
+    display:block;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#2563eb;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    margin-top:15px;
+
+    font-weight:bold;
+
+    transition:.2s;
+
+}
+
+
+.botao:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+.botao:active{
+
+    transform:scale(.98);
+
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
+.nav{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+}
+
+
+.nav a{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#1e293b;
+
+    padding:14px 20px;
+
+    border-radius:12px;
+
+}
+
+
+.nav a:hover{
+
+    background:#263449;
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media(max-width:600px){
+
+    body{
+
+        padding:14px;
+
+    }
+
+
+    h1{
+
+        font-size:26px;
+
+    }
+
+
+    .card{
+
+        padding:20px;
+
+    }
+
+
+    .nav{
+
+        flex-direction:column;
+
+    }
+
+
+    .nav a{
+
+        text-align:center;
+
+    }
+
+}
+
 </style>
+
 </head>
 
+
 <body>
+
+
 <div class="container">
 
-<a href="curso.html" class="voltar">← Voltar para o curso</a>
+
+<!-- ========================================================
+     VOLTAR PARA O CURSO
+========================================================= -->
+
+<a href="curso.html"
+   class="voltar">
+
+    ← Voltar para o curso
+
+</a>
+
+
+<!-- ========================================================
+     CABEÇALHO DA AULA
+========================================================= -->
 
 <header>
-<div class="numero">AULA 01</div>
-<h1>Operações Fundamentais</h1>
-<p class="sub">Operações e expressões numéricas</p>
+
+    <div class="numero">
+
+        AULA 01
+
+    </div>
+
+
+    <h1>
+
+        Operações Fundamentais
+
+    </h1>
+
+
+    <p class="sub">
+
+        Operações e expressões numéricas
+
+    </p>
+
 </header>
 
-<div class="card">
-<h2>🎥 Vídeo da aula</h2>
-<video controls>
-<source src="VID01.mp4" type="video/mp4">
-Seu navegador não suporta vídeo.
-</video>
-</div>
+
+<!-- ========================================================
+     VÍDEO
+========================================================= -->
 
 <div class="card">
-<h2>📚 Material da aula</h2>
-<a class="botao" href="aula01teoria.pdf">📖 Material teórico</a>
-<a class="botao" href="aula01.pdf">📝 Resolver exercícios</a>
+
+    <h2>
+
+        🎥 Vídeo da aula
+
+    </h2>
+
+
+    <iframe
+
+        class="video"
+
+        src="https://www.youtube.com/embed/QrMBCeNIHsw"
+
+        title="Aula 01 - Operações Fundamentais"
+
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
+        allowfullscreen>
+
+    </iframe>
+
 </div>
+
+
+<!-- ========================================================
+     MATERIAIS
+========================================================= -->
+
+<div class="card">
+
+    <h2>
+
+        📚 Material da aula
+
+    </h2>
+
+
+    <a
+
+        class="botao"
+
+        href="aula01teoria.pdf"
+
+        target="_blank">
+
+        📖 Material teórico
+
+    </a>
+
+
+    <a
+
+        class="botao"
+
+        href="aula01.pdf"
+
+        target="_blank">
+
+        📝 Resolver exercícios
+
+    </a>
+
+</div>
+
+
+<!-- ========================================================
+     NAVEGAÇÃO
+========================================================= -->
 
 <div class="nav">
-<span></span>
-<a href="aula02.html">Aula 02 →</a>
-</div>
+
+
+    <span></span>
+
+
+    <a href="aula02.html">
+
+        Aula 02 →
+
+    </a>
+
 
 </div>
+
+
+</div>
+
+
 </body>
+
 </html>
