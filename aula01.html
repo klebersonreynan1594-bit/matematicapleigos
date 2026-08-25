@@ -10,12 +10,7 @@
 
 <title>Aula 01 - Operações Fundamentais</title>
 
-
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
 
 *{
     box-sizing:border-box;
@@ -23,66 +18,32 @@
     padding:0;
 }
 
-
-/* =========================================================
-   BODY
-========================================================= */
-
 body{
-
     font-family:Arial,sans-serif;
-
     background:#0b1220;
-
-    color:white;
-
-    padding:25px;
-
+    color:#fff;
+    min-height:100vh;
+    padding:20px;
 }
-
-
-/* =========================================================
-   CONTAINER
-========================================================= */
 
 .container{
-
-    max-width:800px;
-
+    max-width:900px;
     margin:auto;
-
 }
-
 
 /* =========================================================
-   BOTÃO VOLTAR
+   TOPO
 ========================================================= */
 
-.voltar{
-
-    display:inline-block;
-
-    text-decoration:none;
-
-    color:white;
-
-    background:#1e293b;
-
-    padding:14px 20px;
-
-    border-radius:12px;
-
-    margin-bottom:25px;
-
-    transition:.2s;
-
+.top-nav{
+    margin-bottom:18px;
 }
 
-
-.voltar:hover{
-
-    background:#263449;
-
+.back{
+    color:#60a5fa;
+    text-decoration:none;
+    font-weight:700;
+    font-size:15px;
 }
 
 
@@ -90,39 +51,36 @@ body{
    CABEÇALHO
 ========================================================= */
 
-header{
+.header,
+.card{
+    background:#111827;
+    border:1px solid #263244;
+    border-radius:20px;
+}
 
+.header{
     text-align:center;
-
-    margin:20px 0 30px;
-
+    padding:28px 20px;
+    margin-bottom:18px;
 }
 
-
-.numero{
-
+.lesson-number{
     color:#60a5fa;
-
-    font-weight:bold;
-
-    margin-bottom:10px;
-
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:1px;
+    margin-bottom:8px;
 }
-
 
 h1{
-
-    font-size:32px;
-
+    font-size:28px;
+    line-height:1.2;
+    margin-bottom:8px;
 }
 
-
-.sub{
-
-    color:#94a3b8;
-
-    margin-top:10px;
-
+.subtitle{
+    color:#9ca3af;
+    font-size:15px;
 }
 
 
@@ -131,24 +89,13 @@ h1{
 ========================================================= */
 
 .card{
-
-    background:#111827;
-
-    border:1px solid #263244;
-
-    border-radius:20px;
-
-    padding:25px;
-
-    margin-bottom:20px;
-
+    padding:22px;
+    margin-bottom:18px;
 }
 
-
 .card h2{
-
-    margin-bottom:15px;
-
+    font-size:20px;
+    margin-bottom:14px;
 }
 
 
@@ -157,62 +104,47 @@ h1{
 ========================================================= */
 
 .video{
-
     width:100%;
-
     aspect-ratio:16 / 9;
-
     display:block;
-
-    border:none;
-
-    border-radius:15px;
-
+    border:0;
+    border-radius:14px;
     background:#000;
-
 }
 
 
 /* =========================================================
-   BOTÕES
+   BOTÕES DOS MATERIAIS
 ========================================================= */
 
-.botao{
+.buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
 
-    display:block;
-
+.btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
     text-align:center;
-
     text-decoration:none;
-
-    color:white;
-
     background:#2563eb;
-
+    color:#fff;
     padding:16px;
-
     border-radius:12px;
-
-    margin-top:15px;
-
-    font-weight:bold;
-
+    font-weight:800;
+    font-size:15px;
+    min-height:54px;
     transition:.2s;
-
 }
 
-
-.botao:hover{
-
+.btn:hover{
     background:#1d4ed8;
-
 }
 
-
-.botao:active{
-
+.btn:active{
     transform:scale(.98);
-
 }
 
 
@@ -220,40 +152,44 @@ h1{
    NAVEGAÇÃO
 ========================================================= */
 
-.nav{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:10px;
-
+.navigation{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
 }
 
-
-.nav a{
-
-    display:inline-block;
-
+.nav-btn{
+    display:block;
     text-decoration:none;
+    background:#111827;
+    color:#fff;
+    border:1px solid #263244;
+    border-radius:14px;
+    padding:15px;
+    font-weight:700;
+}
 
-    color:white;
+.nav-btn.next{
+    text-align:right;
+}
 
-    background:#1e293b;
-
-    padding:14px 20px;
-
-    border-radius:12px;
-
-    transition:.2s;
-
+.nav-label{
+    display:block;
+    color:#60a5fa;
+    font-size:12px;
+    margin-bottom:5px;
 }
 
 
-.nav a:hover{
+/* =========================================================
+   RODAPÉ
+========================================================= */
 
-    background:#263449;
-
+.footer{
+    text-align:center;
+    color:#6b7280;
+    font-size:12px;
+    padding:20px 0 8px;
 }
 
 
@@ -264,37 +200,20 @@ h1{
 @media(max-width:600px){
 
     body{
-
         padding:14px;
-
     }
-
 
     h1{
-
-        font-size:26px;
-
+        font-size:23px;
     }
 
-
-    .card{
-
-        padding:20px;
-
+    .buttons,
+    .navigation{
+        grid-template-columns:1fr;
     }
 
-
-    .nav{
-
-        flex-direction:column;
-
-    }
-
-
-    .nav a{
-
-        text-align:center;
-
+    .nav-btn.next{
+        text-align:left;
     }
 
 }
@@ -314,21 +233,26 @@ h1{
      VOLTAR PARA O CURSO
 ========================================================= -->
 
-<a href="curso.html"
-   class="voltar">
+<div class="top-nav">
 
-    ← Voltar para o curso
+    <a
+        class="back"
+        href="curso.html">
 
-</a>
+        ← Voltar para o curso
+
+    </a>
+
+</div>
 
 
 <!-- ========================================================
      CABEÇALHO
 ========================================================= -->
 
-<header>
+<header class="header">
 
-    <div class="numero">
+    <div class="lesson-number">
 
         AULA 01
 
@@ -342,7 +266,7 @@ h1{
     </h1>
 
 
-    <p class="sub">
+    <p class="subtitle">
 
         Operações e expressões numéricas
 
@@ -355,11 +279,11 @@ h1{
      VÍDEO
 ========================================================= -->
 
-<div class="card">
+<section class="card">
 
     <h2>
 
-        🎥 Vídeo da aula
+        🎥 Aula em vídeo
 
     </h2>
 
@@ -378,14 +302,14 @@ h1{
 
     </iframe>
 
-</div>
+</section>
 
 
 <!-- ========================================================
      MATERIAIS
 ========================================================= -->
 
-<div class="card">
+<section class="card">
 
     <h2>
 
@@ -394,48 +318,79 @@ h1{
     </h2>
 
 
-    <a
-
-        class="botao"
-
-        href="aula01teoria.pdf"
-
-        target="_blank">
-
-        📖 Material teórico
-
-    </a>
+    <div class="buttons">
 
 
-    <a
+        <a
 
-        class="botao"
+            class="btn"
 
-        href="aula01.pdf"
+            href="aula01teoria.pdf"
 
-        target="_blank">
+            target="_blank">
 
-        📝 Resolver exercícios
+            📖 Material teórico
 
-    </a>
+        </a>
 
-</div>
+
+        <a
+
+            class="btn"
+
+            href="aula01.pdf"
+
+            target="_blank">
+
+            📝 Resolver exercícios
+
+        </a>
+
+
+    </div>
+
+</section>
 
 
 <!-- ========================================================
      NAVEGAÇÃO
 ========================================================= -->
 
-<div class="nav">
-
-    <span></span>
+<div class="navigation">
 
 
-    <a href="aula02.html">
+    <!-- Não existe aula anterior -->
 
-        Aula 02 →
+    <div></div>
+
+
+    <a
+
+        class="nav-btn next"
+
+        href="aula02.html">
+
+        <span class="nav-label">
+
+            PRÓXIMA AULA →
+
+        </span>
+
+        Aula 02
 
     </a>
+
+
+</div>
+
+
+<!-- ========================================================
+     RODAPÉ
+========================================================= -->
+
+<div class="footer">
+
+    Matemática para Leigos • Matemática Básica
 
 </div>
 
@@ -444,9 +399,11 @@ h1{
 
 
 <!-- ========================================================
-     VERIFICAÇÃO DE ACESSO
+     SISTEMA DE ACESSO
      
-     Usa o MESMO sistema do curso.html:
+     NÃO USA SUPABASE.
+     
+     O login.html deve fazer:
      
      sessionStorage.setItem("alunoLogado","true");
 
@@ -471,9 +428,7 @@ function verificarAcesso(){
 }
 
 
-/* =========================================================
-   INICIAR VERIFICAÇÃO
-========================================================= */
+/* Verificar acesso ao abrir a aula */
 
 verificarAcesso();
 
