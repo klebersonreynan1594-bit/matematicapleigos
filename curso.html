@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matemática para Leigos</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    background:#0b1220;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+#carregando{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:#0b1220;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:12px;
+    color:#94a3b8;
+}
+
+#carregando strong{
+    color:white;
+    font-size:20px;
+}
+
+#conteudoCurso{
+    display:none;
+}
+
+header{
+    text-align:center;
+    padding:45px 20px 25px;
+}
+
+header h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.azul{
+    color:#60a5fa;
+}
+
+.subtitulo{
+    color:#94a3b8;
+    font-size:14px;
+}
+
+.progresso-geral{
+    width:92%;
+    max-width:850px;
+    margin:0 auto 22px;
+    background:#111827;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:18px;
+    padding:20px;
+}
+
+.progresso-topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.porcentagem{
+    color:#60a5fa;
+    font-weight:bold;
+}
+
+.barra{
+    width:100%;
+    height:10px;
+    background:#1e293b;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.barra-preenchida{
+    width:0%;
+    height:100%;
+    background:#3b82f6;
+    transition:.3s;
+}
+
+.container{
+    width:92%;
+    max-width:850px;
+    margin:auto;
+    padding-bottom:40px;
+}
+
+.modulo{
+    background:#111827;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:18px;
+    margin-bottom:18px;
+    overflow:hidden;
+}
+
+.modulo-titulo{
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    cursor:pointer;
+}
+
+.modulo-titulo:active{
+    background:rgba(255,255,255,.03);
+}
+
+.modulo-icon{
+    font-size:26px;
+}
+
+.modulo-info{
+    flex:1;
+}
+
+.modulo-info h2{
+    font-size:18px;
+}
+
+.modulo-info p{
+    color:#94a3b8;
+    font-size:12px;
+    margin-top:4px;
+}
+
+.modulo-progresso{
+    color:#60a5fa;
+    font-size:11px;
+    margin-top:6px;
+}
+
+.seta{
+    font-size:20px;
+    color:#64748b;
+}
+
+.assuntos{
+    display:none;
+    padding:0 12px 12px;
+}
+
+.assuntos.aberto{
+    display:block;
+}
+
+.assunto{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    margin-top:7px;
+    border-radius:12px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.05);
+    color:#e2e8f0;
+    text-decoration:none;
+    transition:.2s;
+}
+
+.assunto:hover{
+    background:rgba(59,130,246,.10);
+    transform:translateX(3px);
+}
+
+.assunto:active{
+    transform:scale(.99);
+}
+
+.assunto.concluida{
+    border-color:rgba(34,197,94,.35);
+    background:rgba(34,197,94,.05);
+}
+
+.numero{
+    width:32px;
+    height:32px;
+    border-radius:9px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:rgba(59,130,246,.14);
+    color:#60a5fa;
+    font-weight:bold;
+    font-size:13px;
+    flex-shrink:0;
+}
+
+.assunto.concluida .numero{
+    background:rgba(34,197,94,.14);
+    color:#4ade80;
+}
+
+.assunto-texto{
+    flex:1;
+}
+
+.assunto-texto strong{
+    display:block;
+    font-size:14px;
+}
+
+.assunto-texto span{
+    display:block;
+    color:#64748b;
+    font-size:11px;
+    margin-top:3px;
+}
+
+.check{
+    width:27px;
+    height:27px;
+    border-radius:50%;
+    border:1px solid #475569;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:transparent;
+    font-size:14px;
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+.assunto.concluida .check{
+    background:#22c55e;
+    border-color:#22c55e;
+    color:white;
+}
+
+footer{
+    text-align:center;
+    color:#475569;
+    font-size:12px;
+    padding:10px 20px 30px;
+}
+
+@media(max-width:600px){
+    header{
+        padding-top:35px;
+    }
+
+    header h1{
+        font-size:28px;
+    }
+
+    .container,
+    .progresso-geral{
+        width:94%;
+    }
+
+    .modulo-titulo{
+        padding:16px;
+    }
+
+    .assunto{
+        padding:13px;
+    }
+
+    .assunto-texto strong{
+        font-size:13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="carregando">
+    <strong>🔐 Verificando acesso...</strong>
+    <span>Aguarde um momento.</span>
+</div>
+
+<div id="conteudoCurso">
+
+<header>
+    <h1>
+        Matemática
+        <span class="azul">para Leigos</span>
+    </h1>
+
+    <p class="subtitulo">
+        Matemática para Concursos
+    </p>
+</header>
+
+<section class="progresso-geral">
+
+    <div class="progresso-topo">
+        <strong>📊 Seu progresso</strong>
+
+        <span class="porcentagem" id="progressoGeral">
+            0%
+        </span>
+    </div>
+
+    <div class="barra">
+        <div class="barra-preenchida" id="barraGeral"></div>
+    </div>
+
+</section>
+
+<main class="container" id="listaModulos"></main>
+
+<footer>
+    Matemática para Leigos • Matemática para Concursos
+</footer>
+
+</div>
+
+<script>
+
+/* =========================================================
+   LOGIN PROVISÓRIO
+=========================================================
+
+   O curso NÃO usa mais Supabase.
+
+   O login.html grava:
+   sessionStorage.setItem("alunoLogado","true");
+
+========================================================= */
+
+function verificarAcesso(){
+
+    const logado =
+        sessionStorage.getItem("alunoLogado");
+
+    if(logado !== "true"){
+        window.location.replace("login.html");
+        return;
+    }
+
+    document.getElementById("carregando").style.display = "none";
+    document.getElementById("conteudoCurso").style.display = "block";
+
+    criarModulos();
+    atualizarProgresso();
+}
+
+
+/* =========================================================
+   MATEMÁTICA BÁSICA
+   Mantém a nomenclatura existente:
+   aula01.html até aula25.html
+========================================================= */
+
+const matematicaBasica = [
+
+    "Operações Fundamentais",
+    "Números Naturais, Inteiros e Racionais",
+    "Números Primos, Fatoração e Divisibilidade",
+    "MMC e MDC",
+    "Frações, Decimais e Dízimas Periódicas",
+    "Potenciação e Radiciação",
+    "Notação Científica",
+    "Razão e Proporção",
+    "Divisão Proporcional",
+    "Regra de Três Simples",
+    "Regra de Três Composta",
+    "Porcentagem",
+    "Aumentos e Descontos",
+    "Juros Simples",
+    "Juros Compostos",
+    "Sistema de Medidas",
+    "Conversão de Unidades",
+    "Média Aritmética",
+    "Média Ponderada",
+    "Média Geométrica",
+    "Estatística Básica",
+    "Tabelas e Gráficos",
+    "Sequências Numéricas",
+    "Problemas Aritméticos",
+    "Problemas de Concurso"
+
+];
+
+
+/* =========================================================
+   GEOMETRIA
+   Nova nomenclatura:
+   aula01g.html até aula30g.html
+   aula01gteoria.pdf até aula30gteoria.pdf
+   aula01g.pdf até aula30g.pdf
+   VID01g.mp4 até VID30g.mp4
+========================================================= */
+
+const geometria = [
+
+    "Conceitos Fundamentais da Geometria",
+    "Ângulos",
+    "Retas Paralelas e Transversais",
+    "Triângulos",
+    "Congruência de Triângulos",
+    "Semelhança de Triângulos",
+    "Teorema de Tales",
+    "Teorema de Pitágoras",
+    "Relações Métricas no Triângulo Retângulo",
+    "Perímetro",
+    "Áreas de Figuras Planas",
+    "Circunferência e Círculo",
+    "Arcos, Cordas e Ângulos na Circunferência",
+    "Polígonos",
+    "Soma dos Ângulos dos Polígonos",
+    "Quadriláteros",
+    "Áreas de Figuras Compostas",
+    "Escalas",
+    "Geometria Espacial",
+    "Prismas e Paralelepípedos",
+    "Cubo",
+    "Pirâmides",
+    "Cilindro",
+    "Cone",
+    "Esfera",
+    "Sólidos Compostos",
+    "Conversão de Unidades Geométricas",
+    "Geometria Analítica Básica",
+    "Problemas de Geometria",
+    "Geometria para Concursos"
+
+];
+
+
+/* =========================================================
+   ÁLGEBRA
+   Nova nomenclatura:
+   aula01a.html até aula34a.html
+   aula01ateoria.pdf até aula34ateoria.pdf
+   aula01a.pdf até aula34a.pdf
+   VID01a.mp4 até VID34a.mp4
+========================================================= */
+
+const algebra = [
+
+    "Linguagem Algébrica",
+    "Expressões Algébricas",
+    "Produtos Notáveis",
+    "Fatoração Algébrica",
+    "Frações Algébricas",
+    "Equações do 1º Grau",
+    "Problemas com Equações do 1º Grau",
+    "Inequações do 1º Grau",
+    "Sistemas de Equações do 1º Grau",
+    "Problemas com Sistemas",
+    "Equações do 2º Grau",
+    "Relações entre Raízes",
+    "Equações Biquadradas",
+    "Equações Irracionais",
+    "Equações Fracionárias",
+    "Inequações do 2º Grau",
+    "Sistemas de Inequações",
+    "Função — Conceitos Fundamentais",
+    "Função do 1º Grau",
+    "Gráfico da Função do 1º Grau",
+    "Função do 2º Grau",
+    "Máximos e Mínimos",
+    "Função Modular",
+    "Função Exponencial",
+    "Equações Exponenciais",
+    "Inequações Exponenciais",
+    "Logaritmos",
+    "Equações Logarítmicas",
+    "Inequações Logarítmicas",
+    "Progressão Aritmética — PA",
+    "Progressão Geométrica — PG",
+    "Sequências e Padrões",
+    "Sistemas e Problemas Algébricos",
+    "Álgebra para Concursos"
+
+];
+
+
+/* =========================================================
+   CRIAR MÓDULOS
+========================================================= */
+
+function criarModulos(){
+
+    const container =
+        document.getElementById("listaModulos");
+
+    criarModulo(
+        container,
+        "basica",
+        "📘",
+        "Matemática Básica",
+        "Fundamentos essenciais para concursos",
+        matematicaBasica,
+        1,
+        ""
+    );
+
+    criarModulo(
+        container,
+        "geometria",
+        "📐",
+        "Geometria",
+        "Geometria plana, espacial e analítica",
+        geometria,
+        1,
+        "g"
+    );
+
+    criarModulo(
+        container,
+        "algebra",
+        "🔢",
+        "Álgebra",
+        "Equações, funções e estruturas algébricas",
+        algebra,
+        1,
+        "a"
+    );
+}
+
+
+/* =========================================================
+   CRIAR UM MÓDULO
+========================================================= */
+
+function criarModulo(
+    container,
+    id,
+    icone,
+    titulo,
+    descricao,
+    aulas,
+    inicio,
+    sufixo
+){
+
+    const modulo =
+        document.createElement("section");
+
+    modulo.className = "modulo";
+
+    const tituloModulo =
+        document.createElement("div");
+
+    tituloModulo.className =
+        "modulo-titulo";
+
+    tituloModulo.onclick =
+        function(){
+            abrirModulo(id,tituloModulo);
+        };
+
+    tituloModulo.innerHTML = `
+
+        <div class="modulo-icon">
+            ${icone}
+        </div>
+
+        <div class="modulo-info">
+
+            <h2>
+                ${titulo}
+            </h2>
+
+            <p>
+                ${descricao}
+            </p>
+
+            <div
+                class="modulo-progresso"
+                id="prog-${id}"
+            >
+                0% concluído
+            </div>
+
+        </div>
+
+        <div class="seta">
+            ›
+        </div>
+
+    `;
+
+    const assuntos =
+        document.createElement("div");
+
+    assuntos.className = "assuntos";
+    assuntos.id = id;
+
+    aulas.forEach(
+        function(nome,index){
+
+            /*
+              Matemática Básica:
+              aula01.html ... aula25.html
+
+              Geometria:
+              aula01g.html ... aula30g.html
+
+              Álgebra:
+              aula01a.html ... aula34a.html
+            */
+
+            const numero =
+                inicio + index;
+
+            const aula =
+                document.createElement("a");
+
+            aula.href =
+                "aula" +
+                String(numero).padStart(2,"0") +
+                sufixo +
+                ".html";
+
+            aula.className =
+                "assunto";
+
+            /*
+              O número interno continua separado para
+              manter o progresso geral de 89 aulas.
+              Básica: 1–25
+              Geometria: 26–55
+              Álgebra: 56–89
+            */
+
+            aula.dataset.aula =
+                numero;
+
+            aula.innerHTML = `
+
+                <div class="numero">
+                    ${String(index + 1).padStart(2,"0")}
+                </div>
+
+                <div class="assunto-texto">
+
+                    <strong>
+                        ${nome}
+                    </strong>
+
+                    <span>
+                        Conteúdo para concursos
+                    </span>
+
+                </div>
+
+                <div
+                    class="check"
+                    onclick="concluir(event,${numero})"
+                >
+                    ✓
+                </div>
+
+            `;
+
+            assuntos.appendChild(aula);
+
+        }
+    );
+
+    modulo.appendChild(tituloModulo);
+    modulo.appendChild(assuntos);
+
+    container.appendChild(modulo);
+}
+
+
+/* =========================================================
+   ABRIR / FECHAR MÓDULO
+========================================================= */
+
+function abrirModulo(id,elemento){
+
+    const modulo =
+        document.getElementById(id);
+
+    const seta =
+        elemento.querySelector(".seta");
+
+    if(modulo.classList.contains("aberto")){
+
+        modulo.classList.remove("aberto");
+        seta.textContent = "›";
+
+    }else{
+
+        modulo.classList.add("aberto");
+        seta.textContent = "⌄";
+
+    }
+}
+
+
+/* =========================================================
+   CONCLUIR AULA
+========================================================= */
+
+function concluir(event,aula){
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    let aulas =
+        JSON.parse(
+            localStorage.getItem(
+                "aulasConcluidas"
+            ) || "[]"
+        );
+
+    if(aulas.includes(aula)){
+
+        aulas =
+            aulas.filter(
+                numero => numero !== aula
+            );
+
+    }else{
+
+        aulas.push(aula);
+
+    }
+
+    localStorage.setItem(
+        "aulasConcluidas",
+        JSON.stringify(aulas)
+    );
+
+    atualizarProgresso();
+}
+
+
+/* =========================================================
+   ATUALIZAR PROGRESSO
+========================================================= */
+
+function atualizarProgresso(){
+
+    const aulas =
+        JSON.parse(
+            localStorage.getItem(
+                "aulasConcluidas"
+            ) || "[]"
+        );
+
+    document
+        .querySelectorAll(".assunto")
+        .forEach(
+            function(item){
+
+                const numero =
+                    Number(item.dataset.aula);
+
+                if(aulas.includes(numero)){
+
+                    item.classList.add("concluida");
+
+                }else{
+
+                    item.classList.remove("concluida");
+
+                }
+            }
+        );
+
+
+    /* PROGRESSO GERAL */
+
+    const total = 89;
+
+    const feitas =
+        aulas.filter(
+            numero =>
+                numero >= 1 &&
+                numero <= 89
+        ).length;
+
+    const porcentagem =
+        Math.round(
+            (feitas / total) * 100
+        );
+
+    document
+        .getElementById("progressoGeral")
+        .textContent =
+            porcentagem + "%";
+
+    document
+        .getElementById("barraGeral")
+        .style.width =
+            porcentagem + "%";
+
+
+    /* MATEMÁTICA BÁSICA */
+
+    const basica =
+        aulas.filter(
+            numero =>
+                numero >= 1 &&
+                numero <= 25
+        ).length;
+
+    document
+        .getElementById("prog-basica")
+        .textContent =
+            Math.round(
+                (basica / 25) * 100
+            ) + "% concluído";
+
+
+    /* GEOMETRIA */
+
+    const geo =
+        aulas.filter(
+            numero =>
+                numero >= 26 &&
+                numero <= 55
+        ).length;
+
+    document
+        .getElementById("prog-geometria")
+        .textContent =
+            Math.round(
+                (geo / 30) * 100
+            ) + "% concluído";
+
+
+    /* ÁLGEBRA */
+
+    const alg =
+        aulas.filter(
+            numero =>
+                numero >= 56 &&
+                numero <= 89
+        ).length;
+
+    document
+        .getElementById("prog-algebra")
+        .textContent =
+            Math.round(
+                (alg / 34) * 100
+            ) + "% concluído";
+}
+
+
+/* =========================================================
+   INICIAR
+========================================================= */
+
+verificarAcesso();
+
+</script>
+
+</body>
+</html>
