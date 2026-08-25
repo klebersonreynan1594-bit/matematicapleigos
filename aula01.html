@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+content="width=device-width, initial-scale=1.0">
 
 <title>Aula 01 - Operações Fundamentais</title>
 
@@ -31,10 +31,6 @@ body{
     margin:auto;
 }
 
-/* =========================================================
-   TOPO
-========================================================= */
-
 .top-nav{
     margin-bottom:18px;
 }
@@ -45,11 +41,6 @@ body{
     font-weight:700;
     font-size:15px;
 }
-
-
-/* =========================================================
-   CABEÇALHO
-========================================================= */
 
 .header,
 .card{
@@ -83,11 +74,6 @@ h1{
     font-size:15px;
 }
 
-
-/* =========================================================
-   CARDS
-========================================================= */
-
 .card{
     padding:22px;
     margin-bottom:18px;
@@ -99,23 +85,33 @@ h1{
 }
 
 
-/* =========================================================
-   VÍDEO DO YOUTUBE
-========================================================= */
+/* =========================
+   VÍDEO
+========================= */
 
-.video{
+.video-container{
+    position:relative;
     width:100%;
-    aspect-ratio:16 / 9;
-    display:block;
-    border:0;
+    padding-bottom:56.25%;
+    height:0;
+    overflow:hidden;
     border-radius:14px;
     background:#000;
 }
 
+.video-container iframe{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    border:0;
+}
 
-/* =========================================================
-   BOTÕES DOS MATERIAIS
-========================================================= */
+
+/* =========================
+   BOTÕES
+========================= */
 
 .buttons{
     display:grid;
@@ -136,21 +132,16 @@ h1{
     font-weight:800;
     font-size:15px;
     min-height:54px;
-    transition:.2s;
 }
 
 .btn:hover{
     background:#1d4ed8;
 }
 
-.btn:active{
-    transform:scale(.98);
-}
 
-
-/* =========================================================
+/* =========================
    NAVEGAÇÃO
-========================================================= */
+========================= */
 
 .navigation{
     display:grid;
@@ -181,9 +172,9 @@ h1{
 }
 
 
-/* =========================================================
+/* =========================
    RODAPÉ
-========================================================= */
+========================= */
 
 .footer{
     text-align:center;
@@ -193,9 +184,9 @@ h1{
 }
 
 
-/* =========================================================
+/* =========================
    CELULAR
-========================================================= */
+========================= */
 
 @media(max-width:600px){
 
@@ -225,172 +216,162 @@ h1{
 
 <body>
 
-
 <div class="container">
 
 
-<!-- ========================================================
+<!-- =========================
      VOLTAR PARA O CURSO
-========================================================= -->
+========================= -->
 
 <div class="top-nav">
 
-    <a
-        class="back"
-        href="curso.html">
+<a class="back"
+href="curso.html">
 
-        ← Voltar para o curso
+← Voltar para o curso
 
-    </a>
+</a>
 
 </div>
 
 
-<!-- ========================================================
+<!-- =========================
      CABEÇALHO
-========================================================= -->
+========================= -->
 
 <header class="header">
 
-    <div class="lesson-number">
+<div class="lesson-number">
 
-        AULA 01
+AULA 01
 
-    </div>
+</div>
 
+<h1>
 
-    <h1>
+Operações Fundamentais
 
-        Operações Fundamentais
+</h1>
 
-    </h1>
+<p class="subtitle">
 
+Operações e expressões numéricas
 
-    <p class="subtitle">
-
-        Operações e expressões numéricas
-
-    </p>
+</p>
 
 </header>
 
 
-<!-- ========================================================
+<!-- =========================
      VÍDEO
-========================================================= -->
+========================= -->
 
 <section class="card">
 
-    <h2>
+<h2>
 
-        🎥 Aula em vídeo
+🎥 Aula em vídeo
 
-    </h2>
+</h2>
 
+<div class="video-container">
 
-    <iframe
+<iframe
+src="https://www.youtube.com/embed/QrMBCeNIHsw"
+title="Aula 01 - Operações Fundamentais"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen>
+</iframe>
 
-        class="video"
-
-        src="https://www.youtube.com/embed/QrMBCeNIHsw"
-
-        title="Aula 01 - Operações Fundamentais"
-
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-
-        allowfullscreen>
-
-    </iframe>
+</div>
 
 </section>
 
 
-<!-- ========================================================
+<!-- =========================
      MATERIAIS
-========================================================= -->
+========================= -->
 
 <section class="card">
 
-    <h2>
+<h2>
 
-        📚 Material da aula
+📚 Materiais da aula
 
-    </h2>
+</h2>
 
+<div class="buttons">
 
-    <div class="buttons">
+<a
+class="btn"
+href="aula01teoria.pdf"
+target="_blank">
 
+📖 Material teórico
 
-        <a
-
-            class="btn"
-
-            href="aula01teoria.pdf"
-
-            target="_blank">
-
-            📖 Material teórico
-
-        </a>
+</a>
 
 
-        <a
+<a
+class="btn"
+href="aula01.pdf"
+target="_blank">
 
-            class="btn"
+📝 Resolver exercícios
 
-            href="aula01.pdf"
+</a>
 
-            target="_blank">
-
-            📝 Resolver exercícios
-
-        </a>
-
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- ========================================================
+<!-- =========================
      NAVEGAÇÃO
-========================================================= -->
+========================= -->
 
 <div class="navigation">
 
 
-    <!-- Não existe aula anterior -->
+<a
+class="nav-btn"
+href="curso.html">
 
-    <div></div>
+<span class="nav-label">
+
+← VOLTAR
+
+</span>
+
+Curso
+
+</a>
 
 
-    <a
+<a
+class="nav-btn next"
+href="aula02.html">
 
-        class="nav-btn next"
+<span class="nav-label">
 
-        href="aula02.html">
+PRÓXIMA AULA →
 
-        <span class="nav-label">
+</span>
 
-            PRÓXIMA AULA →
+Aula 02
 
-        </span>
-
-        Aula 02
-
-    </a>
-
+</a>
 
 </div>
 
 
-<!-- ========================================================
+<!-- =========================
      RODAPÉ
-========================================================= -->
+========================= -->
 
 <div class="footer">
 
-    Matemática para Leigos • Matemática Básica
+Matemática para Leigos • Matemática Básica
 
 </div>
 
@@ -398,39 +379,32 @@ h1{
 </div>
 
 
-<!-- ========================================================
-     SISTEMA DE ACESSO
-     
-     NÃO USA SUPABASE.
-     
-     O login.html deve fazer:
-     
-     sessionStorage.setItem("alunoLogado","true");
-
-========================================================= -->
+<!-- =========================
+     PROTEÇÃO DO LOGIN
+========================= -->
 
 <script>
 
-function verificarAcesso(){
+/*
+==========================================
+LOGIN FALSO
 
-    const logado =
-        sessionStorage.getItem("alunoLogado");
+O aluno precisa ter feito login
+antes de acessar a aula.
+
+Não usamos Supabase.
+==========================================
+*/
+
+const alunoLogado =
+    localStorage.getItem("alunoLogado");
 
 
-    if(logado !== "true"){
+if(alunoLogado !== "true"){
 
-        window.location.replace("login.html");
-
-        return;
-
-    }
+    window.location.href = "login.html";
 
 }
-
-
-/* Verificar acesso ao abrir a aula */
-
-verificarAcesso();
 
 </script>
 
