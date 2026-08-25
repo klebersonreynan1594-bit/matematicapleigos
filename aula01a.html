@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Aula 01 - Linguagem Algébrica</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#0b1220;
+    color:white;
+    padding:25px;
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
+}
+
+.voltar{
+    display:block;
+    text-decoration:none;
+    color:#60a5fa;
+    background:#111827;
+    border:1px solid #263244;
+    padding:18px 20px;
+    border-radius:20px;
+    margin-bottom:25px;
+    font-weight:bold;
+    font-size:16px;
+}
+
+header{
+    text-align:center;
+    margin:20px 0 30px;
+}
+
+.numero{
+    color:#60a5fa;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+h1{font-size:32px}
+
+.sub{
+    color:#94a3b8;
+    margin-top:10px;
+}
+
+.card{
+    background:#111827;
+    border:1px solid #263244;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:20px;
+}
+
+.card h2{margin-bottom:15px}
+
+video{
+    width:100%;
+    border-radius:15px;
+}
+
+.botao{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    color:white;
+    background:#2563eb;
+    padding:16px;
+    border-radius:12px;
+    margin-top:15px;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    margin-top:5px;
+}
+
+.nav a{
+    display:block;
+    width:100%;
+    text-decoration:none;
+    color:white;
+    background:#111827;
+    border:1px solid #263244;
+    border-radius:20px;
+    padding:22px 25px;
+    transition:.2s;
+}
+
+.nav a:hover{
+    background:#172033;
+    transform:translateY(-2px);
+}
+
+.nav-titulo{
+    display:block;
+    color:#60a5fa;
+    font-size:15px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.nav-aula{
+    display:block;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+}
+
+@media(max-width:600px){
+    body{padding:18px}
+    h1{font-size:28px}
+    .card{padding:22px}
+    .nav a{padding:20px}
+    .nav-aula{font-size:18px}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<a href="curso.html" class="voltar">← VOLTAR</a>
+
+<header>
+<div class="numero">AULA 01</div>
+<h1>Linguagem Algébrica</h1>
+<p class="sub">Álgebra para concursos</p>
+</header>
+
+<div class="card">
+<h2>🎥 Vídeo da aula</h2>
+<video controls>
+<source src="VID01a.mp4" type="video/mp4">
+Seu navegador não suporta vídeo.
+</video>
+</div>
+
+<div class="card">
+<h2>📚 Material da aula</h2>
+<a class="botao" href="aula01ateoria.pdf">📖 Material teórico</a>
+<a class="botao" href="aula01a.pdf">📝 Resolver exercícios</a>
+</div>
+
+<div class="nav">
+<a href="curso.html"><span class="nav-titulo">← VOLTAR</span><span class="nav-aula">Curso</span></a>
+<a href="aula02a.html"><span class="nav-titulo">PRÓXIMA AULA →</span><span class="nav-aula">Aula 02</span></a>
+</div>
+
+</div>
+</body>
+</html>
