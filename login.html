@@ -51,8 +51,6 @@ body{
 
     padding:20px;
 
-    /* Impede qualquer texto solto
-       fora do cartão de aparecer */
     font-size:0;
 }
 
@@ -78,7 +76,6 @@ body{
     box-shadow:
         0 20px 60px rgba(0,0,0,.45);
 
-    /* restaura tamanho do texto */
     font-size:16px;
 
 }
@@ -91,6 +88,7 @@ body{
 .icone{
 
     width:70px;
+
     height:70px;
 
     margin:0 auto 18px;
@@ -180,7 +178,6 @@ input{
     outline:none;
 
 }
-
 
 input:focus{
 
@@ -303,7 +300,6 @@ button{
 
 }
 
-
 .voltar:hover{
 
     color:#94a3b8;
@@ -340,7 +336,9 @@ button{
 
 <body>
 
+
 <div class="card">
+
 
     <div class="icone">
         π
@@ -359,9 +357,11 @@ button{
 
     <form id="formulario">
 
+
         <label for="email">
             E-mail
         </label>
+
 
         <input
             type="email"
@@ -375,6 +375,7 @@ button{
         <label for="senha">
             Senha
         </label>
+
 
         <input
             type="password"
@@ -392,6 +393,7 @@ button{
         >
             Entrar
         </button>
+
 
     </form>
 
@@ -418,6 +420,7 @@ button{
         ← Voltar
     </a>
 
+
 </div>
 
 
@@ -425,19 +428,13 @@ button{
 
 /* ==========================================
    LOGIN FALSO / PROVISÓRIO
-==========================================
-
-   E-mail:
-   aluno@gmail.com
-
-   Senha:
-   123456
-
 ========================================== */
 
-const EMAIL_CORRETO = "aluno@gmail.com";
+const EMAIL_CORRETO =
+    "aluno@gmail.com";
 
-const SENHA_CORRETA = "123456";
+const SENHA_CORRETA =
+    "123456";
 
 
 /* ==========================================
@@ -481,9 +478,9 @@ formulario.addEventListener(
         mensagem.textContent = "";
 
 
-        /* ================================
+        /* ==================================
            LOGIN CORRETO
-        ================================= */
+        ================================== */
 
         if(
             emailDigitado === EMAIL_CORRETO
@@ -506,9 +503,11 @@ formulario.addEventListener(
 
 
             /*
-               Marca que o aluno entrou
-               neste navegador.
-            */
+             * SISTEMA DE LOGIN ATUAL
+             *
+             * NÃO USA SUPABASE
+             * NÃO USA LOCALSTORAGE
+             */
 
             sessionStorage.setItem(
                 "alunoLogado",
@@ -517,8 +516,8 @@ formulario.addEventListener(
 
 
             /*
-               Entra no curso.
-            */
+             * ENTRAR NO CURSO
+             */
 
             setTimeout(
                 function(){
@@ -536,9 +535,9 @@ formulario.addEventListener(
         }
 
 
-        /* ================================
+        /* ==================================
            LOGIN INCORRETO
-        ================================= */
+        ================================== */
 
         mensagem.style.color =
             "#fbbf24";
@@ -554,10 +553,10 @@ formulario.addEventListener(
             "Entrar";
 
     }
-
 );
 
 </script>
+
 
 </body>
 
