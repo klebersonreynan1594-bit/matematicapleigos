@@ -11,49 +11,6 @@
 <title>Aula 01 - Operações Fundamentais</title>
 
 
-<!-- =========================================================
-     SUPABASE
-========================================================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-
-const SUPABASE_URL =
-    "https://ugcrffuabvlgobtfcuxf.supabase.co";
-
-const SUPABASE_KEY =
-    "sb_publishable_aCd5M2fKeUlZ6xgFZxefzA_YfxGKznF";
-
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-
-async function protegerPagina(){
-
-    const {
-        data: { session }
-    } = await supabaseClient.auth.getSession();
-
-
-    if(!session){
-
-        window.location.href =
-            "login.html";
-
-    }
-
-}
-
-
-protegerPagina();
-
-</script>
-
-
 <style>
 
 /* =========================================================
@@ -61,13 +18,9 @@ protegerPagina();
 ========================================================= */
 
 *{
-
     box-sizing:border-box;
-
     margin:0;
-
     padding:0;
-
 }
 
 
@@ -120,6 +73,15 @@ body{
     border-radius:12px;
 
     margin-bottom:25px;
+
+    transition:.2s;
+
+}
+
+
+.voltar:hover{
+
+    background:#263449;
 
 }
 
@@ -191,14 +153,14 @@ h1{
 
 
 /* =========================================================
-   VÍDEO YOUTUBE
+   VÍDEO DO YOUTUBE
 ========================================================= */
 
 .video{
 
     width:100%;
 
-    aspect-ratio:16/9;
+    aspect-ratio:16 / 9;
 
     display:block;
 
@@ -212,7 +174,7 @@ h1{
 
 
 /* =========================================================
-   BOTÕES DOS MATERIAIS
+   BOTÕES
 ========================================================= */
 
 .botao{
@@ -282,6 +244,8 @@ h1{
     padding:14px 20px;
 
     border-radius:12px;
+
+    transition:.2s;
 
 }
 
@@ -359,7 +323,7 @@ h1{
 
 
 <!-- ========================================================
-     CABEÇALHO DA AULA
+     CABEÇALHO
 ========================================================= -->
 
 <header>
@@ -464,7 +428,6 @@ h1{
 
 <div class="nav">
 
-
     <span></span>
 
 
@@ -474,11 +437,47 @@ h1{
 
     </a>
 
-
 </div>
 
 
 </div>
+
+
+<!-- ========================================================
+     VERIFICAÇÃO DE ACESSO
+     
+     Usa o MESMO sistema do curso.html:
+     
+     sessionStorage.setItem("alunoLogado","true");
+
+========================================================= -->
+
+<script>
+
+function verificarAcesso(){
+
+    const logado =
+        sessionStorage.getItem("alunoLogado");
+
+
+    if(logado !== "true"){
+
+        window.location.replace("login.html");
+
+        return;
+
+    }
+
+}
+
+
+/* =========================================================
+   INICIAR VERIFICAÇÃO
+========================================================= */
+
+verificarAcesso();
+
+</script>
 
 
 </body>
