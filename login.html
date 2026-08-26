@@ -506,10 +506,12 @@ formulario.addEventListener(
              * SISTEMA DE LOGIN ATUAL
              *
              * NÃO USA SUPABASE
-             * NÃO USA LOCALSTORAGE
+             *
+             * O acesso fica salvo
+             * neste navegador/dispositivo.
              */
 
-            sessionStorage.setItem(
+            localStorage.setItem(
                 "alunoLogado",
                 "true"
             );
@@ -560,4 +562,4 @@ formulario.addEventListener(
 
 </body>
 
-</html>
+   </html>
