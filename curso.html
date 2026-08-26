@@ -332,17 +332,17 @@ footer{
    LOGIN PROVISÓRIO
 =========================================================
 
-   O curso NÃO usa mais Supabase.
+   O curso NÃO usa Supabase.
 
    O login.html grava:
-   sessionStorage.setItem("alunoLogado","true");
+   localStorage.setItem("alunoLogado","true");
 
 ========================================================= */
 
 function verificarAcesso(){
 
     const logado =
-        sessionStorage.getItem("alunoLogado");
+        localStorage.getItem("alunoLogado");
 
     if(logado !== "true"){
         window.location.replace("login.html");
@@ -359,8 +359,6 @@ function verificarAcesso(){
 
 /* =========================================================
    MATEMÁTICA BÁSICA
-   Mantém a nomenclatura existente:
-   aula01.html até aula25.html
 ========================================================= */
 
 const matematicaBasica = [
@@ -396,11 +394,6 @@ const matematicaBasica = [
 
 /* =========================================================
    GEOMETRIA
-   Nova nomenclatura:
-   aula01g.html até aula30g.html
-   aula01gteoria.pdf até aula30gteoria.pdf
-   aula01g.pdf até aula30g.pdf
-   VID01g.mp4 até VID30g.mp4
 ========================================================= */
 
 const geometria = [
@@ -441,11 +434,6 @@ const geometria = [
 
 /* =========================================================
    ÁLGEBRA
-   Nova nomenclatura:
-   aula01a.html até aula34a.html
-   aula01ateoria.pdf até aula34ateoria.pdf
-   aula01a.pdf até aula34a.pdf
-   VID01a.mp4 até VID34a.mp4
 ========================================================= */
 
 const algebra = [
@@ -603,17 +591,6 @@ function criarModulo(
     aulas.forEach(
         function(nome,index){
 
-            /*
-              Matemática Básica:
-              aula01.html ... aula25.html
-
-              Geometria:
-              aula01g.html ... aula30g.html
-
-              Álgebra:
-              aula01a.html ... aula34a.html
-            */
-
             const numero =
                 inicio + index;
 
@@ -628,14 +605,6 @@ function criarModulo(
 
             aula.className =
                 "assunto";
-
-            /*
-              O número interno continua separado para
-              manter o progresso geral de 89 aulas.
-              Básica: 1–25
-              Geometria: 26–55
-              Álgebra: 56–89
-            */
 
             aula.dataset.aula =
                 numero;
